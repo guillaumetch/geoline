@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Geoline - Accueil{% endblock %}</title>
+    {% block stylesheets %}
+        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/bootstrap-3.3.6-dist/css/bootstrap.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/main.css') }}">
+        <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/fonts/fonts.css') }}">
+    {% endblock %}
+</head>
+<body id="{{ body_id }}">
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-1" id="logo_geoline">
+                <img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px">
+            </div>
+            <div class="col-lg-offset-4 col-lg-3">
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <a class="btn btn-default" href="{{ path('enseignant') }}">Session Enseignant</a>
+                    <a class="btn btn-default" href="{{ path('eleve') }}">Session Eleve</a>
+                    <a class="btn btn-default" href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-off"></span> Déconnexion</a>
+                {% else %}
+                    <a class="btn btn-default" href="{{ path('fos_user_registration_register') }}">Inscription</a>
+                    <a class="btn btn-default" href="{{ path('fos_user_security_login') }}">Connexion</a>
+                {% endif %}
+                <br>
+
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row" id="home_content">
+            <div class="col-lg-offset-1 col-lg-10">
+                <p> Bienvenue sur </p>
+            </div>
+            <div class="col-lg-offset-3 col-lg-6">
+                <p>geoline.fr</p>
+            </div>
+        </div>
+        <footer class="navbar-fixed-bottom">
+            <div class="col-lg-1">
+                <img src="{{ asset('bundles/app/img/logo-ESPE-UA-100px.jpg') }}" height="50px" width="200px">
+            </div>
+            <div class="col-lg-offset-4 col-lg-1">
+                <img src="{{ asset('bundles/app/img/cropped-logo_crref_comprime.jpg') }}" height="50px" width="200px">
+            </div>
+            <div class="col-lg-offset-4 col-lg-1">
+                <img src="{{ asset('bundles/app/img/copy-logo-03-web.png') }}" height="50px" width="200px">
+            </div>
+        </footer>
+    </div>
+    </div>
+{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

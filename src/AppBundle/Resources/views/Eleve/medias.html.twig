@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+{% set body_id = 'eleve' %}
+
+{% block title %}
+    Eleve - Médias
+{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2" id="logo_geoline">
+                <a href="{{ path('home') }}"><img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px"></a>
+            </div>
+            <div class="col-lg-offset-3 col-lg-2">
+                <br>
+                <a class="btn btn-default">Session Eleve > Médias</a>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="col-lg-offset-1 col-lg-5" id="documentaire">
+                <p class="text-center">Documentaires</p>
+                <ul>
+                    <li>Les unités de la centrale géothermiquede Bouillante</li>
+                    <li>Bouillante capitale de la géothermie</li>
+                    <li>La Dominique l’île 100% verte</li>
+                    <li>Géothermie le souffle de la Caraïbe</li>
+                </ul>
+            </div>
+            <div class="col-lg-offset-1 col-lg-5" id="mission" >
+                <p class="text-center">Mission-GEOTREF</p>
+                <ul>
+                    <li>Présentation et objectifs de la mission sur
+                        ANTEA</li>
+                    <li>L’objectif du dragage</li>
+                    <li>Méthodologie de recueil : la drague</li>
+                    <li>En pratique, la drague …</li>
+                    <li> Méthodologie de recueil : la sonde
+                        multiparamétrique</li>
+                    <li>La combinaison de survie</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <footer class="navbar-fixed-bottom">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('eleve') }}">Session Eleve</a></li>
+            <li class="active"><a href="{{ path('eleve_medias') }}">Medias</a></li>
+        </ol>
+    </footer>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+
+        $('#computer').on('click',function(){
+            $('.element').removeClass("hide");
+        });
+
+    </script>
+{% endblock %}

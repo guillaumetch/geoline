@@ -1,0 +1,57 @@
+{% extends '::base.html.twig' %}
+{% set body_id = 'eleve_remue_meninges' %}
+
+{% block title %}
+    Eleve - Notes
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/font-awesome/font-awesome.min.css')}}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2" id="logo_geoline">
+                <a href="{{ path('home') }}"><img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px"></a>
+            </div>
+            <div class="col-lg-offset-3 col-lg-2 text-center">
+                <br>
+                <a class="btn btn-default">Session Eleve</a>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="col-lg-offset-2 col-lg-8">
+            <div class="row">
+                <div class="col-lg-4 text-center">
+                    <a class="btn btn-default" href="{{ path('eleve_remue_meninges_souviens_toi') }}"> Souviens-toi</a>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <a class="btn btn-default" {% if app.user.level2 == false %}  href="#" disabled="disabled" {% else %} href="{{ path('eleve_remue_meninges_images_associees') }}" {% endif %}>{% if app.user.level2 == false %}<i class="fa fa-lock"></i>{% endif %} Images associées</a>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <a class="btn btn-default" {% if app.user.level2 == false %} href="#" disabled="disabled" {% else %} href="{{ path('eleve_remue_meninges_quels_pays') }}" {% endif %}>{% if app.user.level2 == false %}<i class="fa fa-lock"></i>{% endif %} Quel(s) pays ?</a>
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <div class="row">
+                <div class="col-lg-4 text-center">
+                    <a class="btn btn-default" {% if app.user.level3 == false %}  href="#"  disabled="disabled"{% else %} href="{{ path('eleve_remue_meninges_reconstitution') }}" {% endif %}>{% if app.user.level3 == false %}<i class="fa fa-lock"></i>{% endif %} Reconstitution</a>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <a class="btn btn-default"  {% if app.user.level3 == false %} href="#" disabled="disabled" {% else %} href="{{ path('eleve_remue_meninges_quizz') }}" {% endif %}>{% if app.user.level3 == false %}<i class="fa fa-lock"></i>{% endif %} Quizz</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="navbar-fixed-bottom">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('eleve') }}">Session Eleve</a></li>
+            <li class="active"><a href="{{ path('eleve_remue_meninges') }}">Remue-Meninges</a></li>
+        </ol>
+    </footer>
+{% endblock%}

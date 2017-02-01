@@ -1,0 +1,138 @@
+{% extends '::base.html.twig' %}
+{% set body_id = 'eleve' %}
+
+{% block title %}
+    Eleve - Remue-Meninges
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2" id="logo_geoline">
+                <a href="{{ path('home') }}"><img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px"></a>
+            </div>
+            <div class="col-lg-offset-3 col-lg-2">
+                <br>
+                <a class="btn btn-default">Session Eleve > Remue-meninges > La centrale de Bouillante</a>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="row">
+            <div class="col-lg-offset-2 col-lg-8 transparent">
+                <p>La centrale de Bouillante : complète le texte avec les mots suivants</p>
+                <br/>
+                <br/>
+                <p id="propositions"> électricité - eau - fluides - deux - mer - Bouillante - vapeur</p>
+                <br/>
+                <br/>
+                <form id="form" method="post" action="{{ path('eleve_remue_meninges_centrale') }}">
+                    <p>La centrale géothermique de <input class="dotted" type="text" name="rp1"> est constituée de <input class="dotted" type="text" name="rp2"> unités de production,
+                        d'une capacité totale de 15 mégawatts.
+                        <br>
+                        Le fluide géothermal, composé d'<input class="dotted" type="text" name="rp3"> et de <input class="dotted" type="text" name="rp4"> à haute température (environ 250
+                        °C), est récupéré au moyen de puits forés en profondeur. Les <input class="dotted" type="text" name="rp5"> sont d'abord
+                        emmené à l'usine localisée dans la ville de Bouillante par une conduite de transport
+                        d'environ 600 m de long. Puis l’eau chaude et la vapeur sont dissociées au moyen d'un
+                        séparateur. La vapeur est ensuite acheminée jusqu'à deux turboalternateurs qui
+                        produisent de l'<input class="dotted" type="text" name="rp6"> Bouillante 1 (5 MWe) et Bouillante 2 (11 MWe).
+                        <br>
+                        L'eau est finalement rejetée à la <input class="dotted" type="text" name="rp7"> à une température maximum de 45 °C par un
+                        canal de rejet.
+                    </p>
+                    <div class="center">
+                        <input class="btn btn-default" type="submit" value="Valider">
+                    </div>
+                    <br/>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="navbar-fixed-bottom">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('eleve') }}">Session Eleve</a></li>
+            <li class="active"><a href="{{ path('eleve_remue_meninges') }}">Remue-Meninges</a></li>
+            <li class="active"><a href="{{ path('eleve_remue_meninges_centrale') }}">La centrale de Bouillante</a></li>
+        </ol>
+    </footer>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script type=application/javascript src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+
+        $('.dotted').val('......................................');
+
+        $('.dotted').on('focusin',function () {
+            if($(this).hasClass('error'))
+            {
+                $(this).removeClass('error');
+            }
+            $(this).val('');
+        });
+
+        $('.dotted').on('focusout',function () {
+            if($(this).val().length == 0)
+            {
+                $(this).val('......................................');
+            }
+        });
+
+        $('#form').on('submit',function(){
+            $('#form .alert.alert-success').remove();
+            var url = $(this).attr('action');
+            var data = $(this).serialize();
+            $.post(url,data,function(data){
+
+                var rp = data.rp;
+
+                if(rp == 'rp1')
+                {
+                    $('input[name=rp1]').addClass("error");
+                }
+
+                if(rp == 'rp2')
+                {
+                    $('input[name=rp2]').addClass("error");
+                }
+
+                if(rp == 'rp3')
+                {
+                    $('input[name=rp3]').addClass("error");
+                }
+
+                if(rp == 'rp4')
+                {
+                    $('input[name=rp4]').addClass("error");
+                }
+
+                if(rp == 'rp5')
+                {
+                    $('input[name=rp5]').addClass("error");
+                }
+
+                if(rp == 'rp6')
+                {
+                    $('input[name=rp6]').addClass("error");
+                }
+
+                if(rp == 'rp7')
+                {
+                    $('input[name=rp7]').addClass("error");
+                }
+
+                if(data.alert)
+                {
+                    $('.center').after(data.alert)
+                }
+
+            },'json');
+            return false;
+        })
+
+
+    </script>
+{% endblock %}

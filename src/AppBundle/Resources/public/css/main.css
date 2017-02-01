@@ -1,0 +1,122 @@
+#home{
+    background-image:url("../img/Caribbean_Sea.jpg");
+}
+
+#enseignant{
+    background-image:url("../img/maxresdefault.jpg");
+}
+
+#enseignant_video,#enseignant_photos,#enseignant_documents
+{
+    background-image:url("../img/Martinique beach_HD.jpg");
+}
+
+#eleve{
+    background-image:url("../img/photo-les-anses-d-arlet-martinique-4.jpg");
+}
+
+#eleve_ressources,#eleve_remue_meninges{
+    background-image:url("../img/BIA-3-16_9-1920x1080.jpg");
+}
+
+#home_content{
+    font-family:"Conv_M.F. Plexus Italic" ;
+    font-size: 125px;
+    text-align: center;
+    color:#0f0f0f;
+    opacity: 0.6;
+}
+#intro,#documentaire,#mission,#legende,#documents,#ressources,#bouillante{
+    font-family: "Calibri";
+    font-size: 18px;
+    color:black;
+}
+
+#container_intro,#documentaire,#mission,#legende,#documents,#ressources
+{
+    background-color: rgba(255,255,255,0.5);
+}
+
+#u{
+    text-decoration: underline;
+}
+
+.hide{
+    visibility: hidden;
+}
+
+.footer {
+    position: absolute;
+    background-color: black;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+}
+
+.center{
+    text-align: center;
+}
+
+#propositions{
+    text-align: center;
+    font-weight: bold;
+}
+
+.dotted{
+    border:0;
+    background-color: transparent;
+    text-align: center;
+    font-weight: bold;
+}
+
+.error{
+    color:red;
+}
+.transparent{
+    background-color: rgba(255,255,255,0.5);
+}
+
+.round_orange{
+    border-radius: 50%;
+    border: solid black;
+    text-align: center;
+    width: 15%;
+    background-color: orange;
+    font-weight: bold;
+}
+
+.round_blue{
+    border-radius: 50%;
+    border: solid black;
+    text-align: center;
+    width: 15%;
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+}
+
+.blue{
+    background-color: blue;
+    color:white;
+}
+
+.orange{
+    background-color: orange;
+    color:white;
+}
+
+.round{
+    height: 50px;
+    border-radius: 50%;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    width: 20%;
+    padding:12px;
+}
+
+#selectable .ui-selecting { background: #FECA40; }
+#selectable .ui-selected { background: #F39814; color: white; }
+
+
+

@@ -1,0 +1,54 @@
+{% extends '::base.html.twig' %}
+{% set body_id = 'eleve' %}
+
+{% block title %}
+    Eleve - Ajout d'une note
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/font-awesome/font-awesome.min.css')}}">
+{% endblock %}
+{% block content%}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2" id="logo_geoline">
+                <a href="{{ path('home') }}"><img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px"></a>
+            </div>
+            <div class="col-lg-offset-3 col-lg-2 text-center">
+                <br>
+                <a class="btn btn-default">Session Eleve</a>
+            </div>
+        </div>
+        <div class="col-lg-offset-1 col-lg-10 transparent">
+            <br>
+            {{ form_start(
+            form_create,
+            {   'method': 'post',
+                'action': path('eleve_notes_ajout'),
+                'attr': {
+                'id':'form_create',
+                'autocomplete':'off'}
+            }
+            ) }}
+            <div class="col-lg-offset-4 col-lg-4">
+                {{ form_label(form_create.title,"Titre") }}
+                {{ form_widget(form_create.title, {'attr':{'class':'form-control'}})}}
+
+                {{ form_label(form_create.about,"À propos de") }}
+                {{ form_widget(form_create.about, {'attr':{'class':'form-control'}})}}
+
+                {{ form_label(form_create.content,"Contenu") }}
+                {{ form_widget(form_create.content, {'attr':{'class':'form-control'}})}}
+                <br>
+                <div class="text-center">
+                    {{ form_widget(form_create.save,{'attr':{'class':'btn btn-info '}})}}
+                    <a class="btn btn-warning" href="{{ path('eleve_notes') }}">Retour</a>
+                </div>
+                <br>
+                {{ form_end(form_create) }}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

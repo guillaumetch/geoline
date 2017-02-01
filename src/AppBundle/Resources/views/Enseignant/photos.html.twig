@@ -1,0 +1,40 @@
+{% extends '::base.html.twig' %}
+{% set body_id = 'enseignant_photos' %}
+
+{% block title %}
+    Enseignant - Photos
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2" id="logo_geoline">
+                <a href="{{ path('home') }}"><img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px"></a>
+            </div>
+            <div class="col-lg-offset-3 col-lg-2">
+                <br>
+                <a class="btn btn-default">Session Enseignant > Photos</a>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <div class="row">
+            <div class="col-lg-offset-2 col-lg-8 center">
+                <img src="{{ asset('bundles/app/img/mission_antea.jpg') }}">
+                <div class="col-lg-offset-4 col-lg-4">
+                    <p id="legende">Equipe de la mission - GEOTREF</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer class="navbar-fixed-bottom">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('enseignant') }}">Session Enseignant</a></li>
+            <li class="active"><a href="{{ path('enseignant_photos') }}">Photos</a></li>
+        </ol>
+    </footer>
+{% endblock %}
+

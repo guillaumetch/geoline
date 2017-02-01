@@ -1,0 +1,80 @@
+{% extends '::base.html.twig' %}
+{% set body_id = 'eleve' %}
+
+{% block title %}
+    Eleve - Introduction
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/font-awesome/font-awesome.min.css')}}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2" id="logo_geoline">
+                <a href="{{ path('home') }}"><img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px"></a>
+            </div>
+            <div class="col-lg-offset-3 col-lg-2">
+                <br>
+                <a class="btn btn-default">Session Eleve</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-2 col-lg-8" id="intro">
+                <div id="container_intro">
+                    <p id="u">Introduction</p>
+                    <p>
+                        Bienvenue sur la plate-forme geoline.fr.
+                        <br/>
+                        Crée en 2016, elle sert à fournir des documents sources (audio, video, photo, etc.) sur l’étude de la géothermie dans la Caraïbe.
+                        Ces documents sont issus des travaux de la collaboration de compagnie GEOTREF et des enseignants chercheurs de l’Université des
+                        Antilles qui étudient les réservoirs géothermiques fracturés.
+                    </p>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="col-lg-3 text-center element hide">
+                    <a href="{{ path('eleve_ressources') }}"><i class="fa fa-folder fa-3x"></i></a>
+                    <p>Ressources</p>
+                </div>
+
+                <div class="col-lg-3 text-center element hide">
+                    <a href="{{ path('eleve_remue_meninges') }}"><i class="fa fa-gamepad fa-3x"></i></a>
+                    <p>Remue-méninges</p>
+                </div>
+                <div class="col-lg-3 text-center element hide">
+                    <a href="{{ path('eleve_medias') }}"><i class="fa fa-play-circle-o fa-3x"></i></a>
+                    <p>Médias</p>
+                </div>
+                <div class="col-lg-3 text-center element hide">
+                    <a href=""><i class="fa fa-file-text-o fa-3x"></i></a>
+                    <p>Notes</p>
+                </div>
+                <div class="col-lg-offset-5 col-lg-1 text-center">
+                    <a id="computer"><i class="fa fa-laptop fa-5x"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="navbar-fixed-bottom">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('eleve') }}">Session Eleve</a></li>
+            <li class="active"><a href="{{ path('eleve') }}">Introduction</a></li>
+        </ol>
+    </footer>
+
+    <script type=application/javascript src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+
+        $('#computer').on('click',function(){
+            $('.element').removeClass("hide");
+        });
+
+    </script>
+{% endblock %}

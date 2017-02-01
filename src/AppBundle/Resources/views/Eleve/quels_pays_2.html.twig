@@ -1,0 +1,170 @@
+{% extends '::base.html.twig' %}
+{% set body_id = 'eleve_remue_meninges' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+{% endblock %}
+
+{% block title %}
+    Eleve - Remue-Meninges / Quel(s) pays ? (Suite)
+{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2" id="logo_geoline">
+                <a href="{{ path('home') }}"><img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px"></a>
+            </div>
+            <div class="col-lg-offset-3 col-lg-2">
+                <br>
+                <a class="btn btn-default">Session Eleve > Remue-meninges > Quels pays ?</a>
+            </div>
+        </div>
+        <div class="col-lg-offset-1 col-lg-10 transparent">
+            <br>
+            <p><strong>Quels pays : Clique sur les pays producteurs d'électricité géothermique. Sélectionne-les avant que le chrono se termine. Tu as 20 secondes. <br>(Ctrl + clic pour sélectionner plusieurs pays)</strong></p>
+            <br>
+            <div class="col-lg-6 text-center">
+                <img src="{{ asset('bundles/app/img/questions-carte-1.jpg') }}"  width="480" height="240">
+                <br>
+                <br>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#carte1">Compléter la carte</button>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="{{ asset('bundles/app/img/questions-carte-2.jpg') }}" width="480" height="240">
+                <br>
+                <br>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#carte2">Compléter la carte</button>
+
+            </div>
+            <form class="myform" method="post" action="{{ path('eleve_remue_meninges_quels_pays_2') }}">
+                <div class="modal fade" id="carte1" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Quizz : Quels pays ?</h4>
+                            </div>
+                            <div class="modal-body text-center">
+                                <p><strong>Compléte la carte à l'aide de la liste des pays suivante : <br>Italie - Antilles Françaises - Philippines - États-Unis - Japon - Mexique - Indonésie - Islande - Nouvelle-Zélande </strong></p>
+                                <img src="{{ asset('bundles/app/img/questions-carte-1.jpg') }}"  width="480" height="240">
+                                <div class="panel-body">
+                                    <label>1.
+                                        <input class="form-control" type="text" name="rp1c1">
+                                    </label>
+                                    <label>2.
+                                        <input class="form-control" type="text" name="rp2c1">
+                                    </label>
+                                    <label>3.
+                                        <input class="form-control" type="text" name="rp3c1">
+                                    </label>
+                                    <label>4.
+                                        <input class="form-control" type="text" name="rp4c1">
+                                    </label>
+                                    <label>5.
+                                        <input class="form-control" type="text" name="rp5c1">
+                                    </label>
+                                    <label>6.
+                                        <input class="form-control" type="text" name="rp6c1">
+                                    </label>
+                                    <label>7.
+                                        <input class="form-control" type="text" name="rp7c1">
+                                    </label>
+                                    <label>8.
+                                        <input class="form-control" type="text" name="rp8c1">
+                                    </label>
+                                    <label>9.
+                                        <input class="form-control" type="text" name="rp9c1">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="carte2" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Quizz : Quels Pays ?</h4>
+                            </div>
+                            <div class="modal-body text-center">
+                                <p><strong>Compléte la carte à l'aide de la liste des pays suivante : <br>Italie - Antilles Françaises - Philippines - États-Unis - Japon - Mexique - Indonésie - Islande - Nouvelle-Zélande </strong></p>
+                                <img src="{{ asset('bundles/app/img/questions-carte-2.jpg') }}"  width="480" height="240">
+                                <div class="panel-body">
+                                    <label>1.
+                                        <input class="form-control" type="text" name="rp1c2">
+                                    </label>
+                                    <label>2.
+                                        <input class="form-control" type="text" name="rp2c2">
+                                    </label>
+                                    <label>3.
+                                        <input class="form-control" type="text" name="rp3c2">
+                                    </label>
+                                    <label>4.
+                                        <input class="form-control" type="text" name="rp4c2">
+                                    </label>
+                                    <label>5.
+                                        <input class="form-control" type="text" name="rp5c2">
+                                    </label>
+                                    <label>6.
+                                        <input class="form-control" type="text" name="rp6c2">
+                                    </label>
+                                    <label>7.
+                                        <input class="form-control" type="text" name="rp7c2">
+                                    </label>
+                                    <label>8.
+                                        <input class="form-control" type="text" name="rp8c2">
+                                    </label>
+                                    <label>9.
+                                        <input class="form-control" type="text" name="rp9c2">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-offset-4 col-lg-4 alert-msg text-center">
+                    <input class="btn btn-default" type="submit" value="Valider">
+                    <br>
+                    <br>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src={{ asset('bundles/app/js/bootstrap.js') }}></script>
+    <script type="text/javascript">
+        $('.myform').on('submit',function () {
+            var url = $(this).attr('action');
+            var data = $(this).serialize();
+            console.log(data);
+            $.post(url,data,function(data){
+                if(data.alert)
+                {
+                    $('.transparent .alert-msg .alert.alert-success').remove();
+                    $('.transparent .alert-msg .alert.alert-danger').remove();
+                    $('.transparent .alert-msg').append(data.alert);
+                }
+                if(data.error_rep)
+                {
+                    $('.transparent .alert-msg .alert.alert-success').remove();
+                    $('.transparent .alert-msg .alert.alert-danger').remove();
+                    $('.transparent .alert-msg').append(data.error_rep);
+                }
+            },'json');
+            return false;
+        })
+    </script>
+{% endblock %}

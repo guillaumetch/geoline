@@ -1,0 +1,575 @@
+{% extends '::base.html.twig' %}
+{% set body_id = 'eleve_remue_meninges' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block title %}
+    Eleve - Remue-Meninges / Souviens-toi
+{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2" id="logo_geoline">
+                <a href="{{ path('home') }}"><img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px"></a>
+            </div>
+            <div class="col-lg-offset-3 col-lg-2">
+                <br>
+                <a class="btn btn-default">Session Eleve > Remue-meninges > Souviens-toi</a>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="col-lg-offset-1 col-lg-10 transparent">
+            <br>
+            <p><strong>Souviens-toi : Sois attentif, lis le tableau et complète le avec les informations placées dans le rang : "Réponses à placer "</strong></p>
+            <br>
+            <form class="myform" method="post" action="{{ path('eleve_remue_meninges_souviens_toi') }}" autocomplete="off">
+                <table class="table table-bordered table-responsive">
+                    <thead>
+                    <th class="blue">Types d'énergies</th>
+                    <th class="blue">Caractéristiques</th>
+                    <th class="blue">Sources d'énergies</th>
+                    <th class="blue">Transformation</th>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td class="orange" rowspan="2">Energies fossiles</td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" name="rp1_c">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        se forment à partir de la transformation de matière fabriquée par des êtres vivants
+                                    </option>
+                                    <option>
+                                        permettent une production d'énergie par combustion
+                                    </option>
+                                    <option>
+                                        sont inépuisables à échelle de temps humaine
+                                    </option>
+                                    <option>
+                                        ne produisent aucune émission de CO2 dans l'atmosphère
+                                    </option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" name="rp1_s">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        gaz naturel
+                                    </option>
+                                    <option>
+                                        charbon
+                                    </option>
+                                    <option>
+                                        pétrole
+                                    </option>
+                                    <option>
+                                        chaleur de la Terre
+                                    </option>
+                                    <option>
+                                        soleil
+                                    </option>
+                                    <option>
+                                        vent
+                                    </option>
+                                    <option>
+                                        mouvement de l'eau
+                                    </option>
+                                    <option>
+                                        biomasse
+                                    </option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" name="rp1_t">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        combustion
+                                    </option>
+                                    <option>
+                                        chauffage, électricité
+                                    </option>
+                                    <option>
+                                        panneaux thermiques et photovoltaïques
+                                    </option><option>
+                                        turbines des barrages, des centrales marémotrices, des hydroliennes
+                                    </option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" name="rp2_c">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        se forment à partir de la transformation de matière fabriquée par des êtres vivants
+                                    </option>
+                                    <option>
+                                        permettent une production d'énergie par combustion
+                                    </option>
+                                    <option>
+                                        sont inépuisables à échelle de temps humaine
+                                    </option>
+                                    <option>
+                                        ne produisent aucune émission de CO2 dans l'atmosphère
+                                    </option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" name="rp2_s">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        gaz naturel
+                                    </option>
+                                    <option>
+                                        charbon
+                                    </option>
+                                    <option>
+                                        pétrole
+                                    </option>
+                                    <option>
+                                        chaleur de la Terre
+                                    </option>
+                                    <option>
+                                        soleil
+                                    </option>
+                                    <option>
+                                        vent
+                                    </option>
+                                    <option>
+                                        mouvement de l'eau
+                                    </option>
+                                    <option>
+                                        biomasse
+                                    </option>
+                                </select>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="form-group">
+                                <select class="form-control" name="rp2_s_2">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        gaz naturel
+                                    </option>
+                                    <option>
+                                        charbon
+                                    </option>
+                                    <option>
+                                        pétrole
+                                    </option>
+                                    <option>
+                                        chaleur de la Terre
+                                    </option>
+                                    <option>
+                                        soleil
+                                    </option>
+                                    <option>
+                                        vent
+                                    </option>
+                                    <option>
+                                        mouvement de l'eau
+                                    </option>
+                                    <option>
+                                        biomasse
+                                    </option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" name="rp2_t">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        combustion
+                                    </option>
+                                    <option>
+                                        chauffage, électricité
+                                    </option>
+                                    <option>
+                                        panneaux thermiques et photovoltaïques
+                                    </option><option>
+                                        turbines des barrages, des centrales marémotrices, des hydroliennes
+                                    </option>
+                                </select>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="form-group">
+                                <select class="form-control" name="rp2_t_2">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        combustion
+                                    </option>
+                                    <option>
+                                        chauffage, électricité
+                                    </option>
+                                    <option>
+                                        panneaux thermiques et photovoltaïques
+                                    </option><option>
+                                        turbines des barrages, des centrales marémotrices, des hydroliennes
+                                    </option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="orange" rowspan="2">Energies renouvelables</td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" name="rp3_c">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        se forment à partir de la transformation de matière fabriquée par des êtres vivants
+                                    </option>
+                                    <option>
+                                        permettent une production d'énergie par combustion
+                                    </option>
+                                    <option>
+                                        sont inépuisables à échelle de temps humaine
+                                    </option>
+                                    <option>
+                                        ne produisent aucune émission de CO2 dans l'atmosphère
+                                    </option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" name="rp3_s">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        gaz naturel
+                                    </option>
+                                    <option>
+                                        charbon
+                                    </option>
+                                    <option>
+                                        pétrole
+                                    </option>
+                                    <option>
+                                        chaleur de la Terre
+                                    </option>
+                                    <option>
+                                        soleil
+                                    </option>
+                                    <option>
+                                        vent
+                                    </option>
+                                    <option>
+                                        mouvement de l'eau
+                                    </option>
+                                    <option>
+                                        biomasse
+                                    </option>
+                                </select>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="form-group">
+                                <select class="form-control" name="rp3_s_2">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        gaz naturel
+                                    </option>
+                                    <option>
+                                        charbon
+                                    </option>
+                                    <option>
+                                        pétrole
+                                    </option>
+                                    <option>
+                                        chaleur de la Terre
+                                    </option>
+                                    <option>
+                                        soleil
+                                    </option>
+                                    <option>
+                                        vent
+                                    </option>
+                                    <option>
+                                        mouvement de l'eau
+                                    </option>
+                                    <option>
+                                        biomasse
+                                    </option>
+                                </select>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="form-group">
+                                <select class="form-control" name="rp3_s_3">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        gaz naturel
+                                    </option>
+                                    <option>
+                                        charbon
+                                    </option>
+                                    <option>
+                                        pétrole
+                                    </option>
+                                    <option>
+                                        chaleur de la Terre
+                                    </option>
+                                    <option>
+                                        soleil
+                                    </option>
+                                    <option>
+                                        vent
+                                    </option>
+                                    <option>
+                                        mouvement de l'eau
+                                    </option>
+                                    <option>
+                                        biomasse
+                                    </option>
+                                </select>
+                            </div>
+                        </td>
+                        <td><div class="form-group">
+                                <div class="form-group">
+                                    <select class="form-control" name="rp3_t">
+                                        <option selected="selected"></option>
+                                        <option>
+                                            combustion
+                                        </option>
+                                        <option>
+                                            chauffage, électricité
+                                        </option>
+                                        <option>
+                                            panneaux thermiques et photovoltaïques
+                                        </option><option>
+                                            turbines des barrages, des centrales marémotrices, des hydroliennes
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <select class="form-control" name="rp3_t_2">
+                                        <option selected="selected"></option>
+                                        <option>
+                                            combustion
+                                        </option>
+                                        <option>
+                                            chauffage, électricité
+                                        </option>
+                                        <option>
+                                            panneaux thermiques et photovoltaïques
+                                        </option><option>
+                                            turbines des barrages, des centrales marémotrices, des hydroliennes
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" name="rp4_c">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        se forment à partir de la transformation de matière fabriquée par des êtres vivants
+                                    </option>
+                                    <option>
+                                        permettent une production d'énergie par combustion
+                                    </option>
+                                    <option>
+                                        sont inépuisables à échelle de temps humaine
+                                    </option>
+                                    <option>
+                                        ne produisent aucune émission de CO2 dans l'atmosphère
+                                    </option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" name="rp4_s">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        gaz naturel
+                                    </option>
+                                    <option>
+                                        charbon
+                                    </option>
+                                    <option>
+                                        pétrole
+                                    </option>
+                                    <option>
+                                        chaleur de la Terre
+                                    </option>
+                                    <option>
+                                        soleil
+                                    </option>
+                                    <option>
+                                        vent
+                                    </option>
+                                    <option>
+                                        mouvement de l'eau
+                                    </option>
+                                    <option>
+                                        biomasse
+                                    </option>
+                                </select>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="form-group">
+                                <select class="form-control" name="rp4_s_2">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        gaz naturel
+                                    </option>
+                                    <option>
+                                        charbon
+                                    </option>
+                                    <option>
+                                        pétrole
+                                    </option>
+                                    <option>
+                                        chaleur de la Terre
+                                    </option>
+                                    <option>
+                                        soleil
+                                    </option>
+                                    <option>
+                                        vent
+                                    </option>
+                                    <option>
+                                        mouvement de l'eau
+                                    </option>
+                                    <option>
+                                        biomasse
+                                    </option>
+                                </select>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <select class="form-control" name="rp4_t">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        combustion
+                                    </option>
+                                    <option>
+                                        chauffage, électricité
+                                    </option>
+                                    <option>
+                                        panneaux thermiques et photovoltaïques
+                                    </option><option>
+                                        turbines des barrages, des centrales marémotrices, des hydroliennes
+                                    </option>
+                                </select>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="form-group">
+                                <select class="form-control" name="rp4_t_2">
+                                    <option selected="selected"></option>
+                                    <option>
+                                        combustion
+                                    </option>
+                                    <option>
+                                        chauffage, électricité
+                                    </option>
+                                    <option>
+                                        panneaux thermiques et photovoltaïques
+                                    </option><option>
+                                        turbines des barrages, des centrales marémotrices, des hydroliennes
+                                    </option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td class="orange">
+                            Réponses à placer
+                        </td>
+                        <td><strong>se forment à partir de la transformation de
+                                matière fabriquée par des êtres vivants - sont
+                                inépuisables à échelle de temps humaine -
+                                permettent une production d’énergie par
+                                combustion - ne produisent aucune émission de
+                                CO2 dans l’atmosphère</strong>
+                        </td>
+                        <td><strong>
+                                chaleur de la Terre - gaz naturel - soleil - vent
+                                - charbon - mouvement de l’eau - pétrole -
+                                biomasse</strong>
+                        </td>
+                        <td>
+                            <strong>
+                                turbines des barrages, des centrales
+                                marémotrices, des hydroliennes -
+                                panneaux thermiques et
+                                photovoltaïques - combustion -
+                                chauffage, électricité - combustion
+                            </strong>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+                <div class="row">
+                    <div class="col-lg-offset-5 col-lg-2 text-center">
+                        <input class="btn btn-default" type="submit" value="Valider">
+                    </div>
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
+    <br>
+    <footer class="navbar">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('eleve') }}">Session Eleve</a></li>
+            <li class="active"><a href="{{ path('eleve_remue_meninges') }}">Remue-Meninges</a></li>
+            <li class="active"><a href="{{ path('eleve_remue_meninges_reconstitution') }}">Reconstitution</a></li>
+        </ol>
+    </footer>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('.myform').on('submit',function () {
+            var url = $(this).attr('action');
+            var data = $(this).serialize();
+            $.post(url,data,function(data){
+                if(data.alert)
+                {
+                    $('.myform .alert.alert-success').remove();
+                    $('.myform .alert.alert-danger').remove();
+                    $('.myform').append(data.alert)
+                }
+                if(data.error_rep)
+                {
+                    $('.myform .alert.alert-success').remove();
+                    $('.myform .alert.alert-danger').remove();
+                    $('.myform').append(data.error_rep)
+                }
+            },'json');
+            return false;
+        })
+
+    </script>
+{% endblock %}

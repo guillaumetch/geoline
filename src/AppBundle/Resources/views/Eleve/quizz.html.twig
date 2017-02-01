@@ -1,0 +1,297 @@
+{% extends '::base.html.twig' %}
+{% set body_id = 'eleve_remue_meninges' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block title %}
+    Eleve - Remue-Meninges / Quizz ?
+{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2" id="logo_geoline">
+                <a href="{{ path('home') }}"><img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px"></a>
+            </div>
+            <div class="col-lg-offset-3 col-lg-2">
+                <br>
+                <a class="btn btn-default">Session Eleve > Remue-meninges > Quels pays ?</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-offset-1 col-lg-10 transparent">
+                <br>
+                <p><strong>Quizz : À l’aide des vidéos dans l’espace « médias » partie « documentaires » réponds aux questions suivantes en cliquant sur la bonne réponse.</strong></p>
+                <br>
+                <div class="col-lg-offset-2 col-lg-8">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#Q1">Q1</a></li>
+                        <li><a data-toggle="tab" href="#Q2">Q2</a></li>
+                        <li><a data-toggle="tab" href="#Q3">Q3</a></li>
+                        <li><a data-toggle="tab" href="#Q4">Q4</a></li>
+                        <li><a data-toggle="tab" href="#Q5">Q5</a></li>
+                        <li><a data-toggle="tab" href="#Q6">Q6</a></li>
+                        <li><a data-toggle="tab" href="#Q7">Q7</a></li>
+                        <li><a data-toggle="tab" href="#Q8">Q8</a></li>
+                        <li><a data-toggle="tab" href="#Q9">Q9</a></li>
+                        <li><a data-toggle="tab" href="#Q10">Q10</a></li>
+                        <li><a data-toggle="tab" href="#Q11">Q11</a></li>
+                        <li><a data-toggle="tab" href="#Q12">Q12</a></li>
+                        <li><a data-toggle="tab" href="#Q13">Q13</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="Q1" class="tab-pane fade in active">
+                            <h5><strong>Q1 : À quelle époque commence l'histoire géologique de l'Arc Antillais ?</strong></h5>
+                            <div class="col-lg-offset-4 col-lg-4">
+                                <div class="radio">
+                                    <label><input type="radio" name="Q1" value="a">a. Holocène</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q1" value="b">b. Éocène</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q1" value="c">c. Miocène</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Q2" class="tab-pane fade">
+                            <h5><strong>Q2 : La naissance de l'Arc Antillais volcanique est le résultat de la subduction</strong></h5>
+                            <div class="col-lg-offset-2 col-lg-8">
+                                <div class="radio">
+                                    <label><input type="radio" name="Q2" value="a">a. de la litosphère ATLANTIQUE sous la litosphère CARAÏBE</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q2" value="b">b. de la litosphère ATLANTIQUE sur la litosphère CARAÏBE</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q2" value="c">c. de la litosphère ATLANTIQUE contre la litosphère CARAÏBE</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Q3" class="tab-pane fade">
+                            <h5><strong>Q3 : Qu’est-il indispensable de trouver sur un territoire afin de pouvoir y supposer un potentie géothermique ?</strong></h5>
+                            <div class="col-lg-offset-2 col-lg-8">
+                                <div class="radio">
+                                    <label><input type="radio" name="Q3" value="a">a. magma / roches / vapeur</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q3" value="b">b. volcan en activité / diesel / réseau de failles</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q3" value="c">c. anomalie thermique / eau / réseau de failles</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Q4" class="tab-pane fade">
+                            <h5><strong>Q4 : Dans la sol au niveau des zones géothermiques exploitables pour produire de l’électricité, quelle doit être l’évolution du gradient géothermique ?</strong></h5>
+                            <div class="col-lg-offset-2 col-lg-8">
+                                <div class="radio">
+                                    <label><input type="radio" name="Q4" value="a">a. normale (varie de 15 à 45°C par km)</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q4" value="b">b. faible ( <15°C par km)</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q4" value="c">c. élevée ( >100°C par km</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Q5" class="tab-pane fade">
+                            <h5><strong>Q5 : En Martinique, quelles communes sont potentiellement propice à la géothermie de haute température ?</strong></h5>
+                            <div class="col-lg-offset-2 col-lg-8">
+                                <div class="radio">
+                                    <label><input type="radio" name="Q5" value="a">a. Le François / Sainte-Anne</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q5" value="b">b. Les Anses d'Arlet / Le Morne-Rouge</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q5" value="c">c. Ducos / Sainte-Marie</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Q6" class="tab-pane fade">
+                            <h5><strong>Q6 : Où se trouve la centrale géothermique en Guadeloupe ?</strong></h5>
+                            <div class="col-lg-offset-2 col-lg-8">
+                                <div class="radio">
+                                    <label><input type="radio" name="Q6" value="a">a. Le Moule</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q6" value="b">b. Deshaies</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q6" value="c">c. Bouillante</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Q7" class="tab-pane fade">
+                            <h5><strong>Q7 : Que signifie le sigle BRGM ?</strong></h5>
+                            <div class="col-lg-offset-2 col-lg-8">
+                                <div class="radio">
+                                    <label><input type="radio" name="Q7" value="a">a. Bureau de Recherches Géologiques et Minières</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q7" value="b">b. Bureau de Reconnaissance Géologiques et Modélisations</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q7" value="c">c. Bureau de Recherches Géophysiques et Minières</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Q8" class="tab-pane fade">
+                            <h5><strong>Q8 : Vers quelles années, le BRGM a-t-il commencé les travaux d’exploration des sous-sols en Guadeloupe à la recherche d’un éventuel potentiel géothermique ?</strong></h5>
+                            <div class="col-lg-offset-2 col-lg-8">
+                                <div class="radio">
+                                    <label><input type="radio" name="Q8" value="a">a. Vers les années 50</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q8" value="b">b. Vers les années 70</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q8" value="c">c. Vers les années 60</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Q9" class="tab-pane fade">
+                            <h5><strong>Q9 : En quelles années ont été mise, respectivement, en service la 1ère et la 2ème centrales en Guadeloupe ?</strong></h5>
+                            <div class="col-lg-offset-2 col-lg-8">
+                                <div class="radio">
+                                    <label><input type="radio" name="Q9" value="a">a. 1986 et 2006</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q9" value="b">b. 1990 et 2006</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q9" value="c">c. 1970 et 2006</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Q10" class="tab-pane fade">
+                            <h5><strong>Q10 : En Guadeloupe, quelle est la quantité d’énergie respectivement produite par la 1ère et la 2ème centrales ?</strong></h5>
+                            <div class="col-lg-offset-2 col-lg-8">
+                                <div class="radio">
+                                    <label><input type="radio" name="Q10" value="a">a. 35MW et 25MW</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q10" value="b">b. 5MW et 11MW</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q10" value="c">c. 11MW et 25 MW</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Q11" class="tab-pane fade">
+                            <h5><strong>Q11 : Choisis parmi ces 3 textes celui qui est plus cohérent pour expliquer le principe de fonctionnement d’une centrale géothermique.</strong></h5>
+                            <div class="col-lg-12">
+                                <div class="radio">
+                                    <label><input type="radio" name="Q11" value="a">a. En géothermie, la chaudière c’est la Terre. Une fois remontée à la surface , à l’aide d’une tête de puit, le fluide duophasique ( mélange d’eau
+                                        et de vapeur sous pression) est envoyé au séparateur. À ce niveau, on sépare la vapeur de l’eau. La vapeur sous pression est envoyée vers une
+                                        turbine pour y actionner les hélices afin de produire de l’électricité via l’alternateur. Une fois sortie de la turbine, la vapeur d’eau est envoyée
+                                        au condensateur où elle est refroidie avec de l’eau de mer puis renvoyée dans la baie à une température inférieure à 45°C, comme le prévoie
+                                        la réglementation. L’eau issue du séparateur est quant à elle ré-injectée directement dans le réservoir géothermal par le puit de ré-injection.</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q11" value="b">b. En géothermie, la chaudière c’est la Terre. Une fois remontée à la surface , à l’aide d’une tête de puit, le fluide diphasique ( mélange d’eau
+                                        et de vapeur sous pression) est envoyé au séparateur. À ce niveau, on sépare la vapeur de l’eau. La vapeur sous pression est envoyée vers une
+                                        turbine pour y actionner les hélices afin de produire de l’électricité via l’alternateur. Une fois sortie de la turbine, la vapeur d’eau est envoyée
+                                        au condensateur où elle est refroidie avec de l’eau potable puis renvoyée dans la baie à une température inférieure à 45°C, comme le prévoie
+                                        la réglementation. L’eau issue du séparateur est quant à elle ré-injectée directement dans le réservoir géothermal par le puit de ré-injection.</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q11" value="c">c. En géothermie, la chaudière c’est la Terre. Une fois remontée à la surface , à l’aide d’une tête de puit, le fluide diphasique ( mélange d’eau
+                                        et de vapeur sous pression) est envoyé au séparateur. À ce niveau, on sépare la vapeur de l’eau. La vapeur sous pression est envoyée vers une
+                                        turbine pour y actionner les hélices afin de produire de l’électricité via l’alternateur. Une fois sortie de la turbine, la vapeur d’eau est envoyée
+                                        au condensateur où elle est refroidie avec de l’eau de mer puis renvoyée dans la baie à une température inférieure à 45°C, comme le prévoie
+                                        la réglementation. L’eau issue du séparateur est quant à elle ré-injectée directement dans le réservoir géothermal par le puit de ré-injection.</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Q12" class="tab-pane fade">
+                            <h5><strong>Q12 : Avec quelle énergie fossile, la Dominique produit-elle de l’électricité ?</strong></h5>
+                            <div class="col-lg-offset-2 col-lg-8">
+                                <div class="radio">
+                                    <label><input type="radio" name="Q12" value="a">a. pétrole</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q12" value="b">b. gaz naturel</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q12" value="c">c. charbon</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Q13" class="tab-pane fade">
+                            <h5><strong>Q13 : Combien de volcans y a-t-il en Dominique ?</strong></h5>
+                            <div class="col-lg-offset-2 col-lg-8">
+                                <div class="radio">
+                                    <label><input type="radio" name="Q13" value="a">a. 8</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q13" value="b">b. 9</label>
+                                </div>
+                                <div class="radio">
+                                    <label><input type="radio" name="Q13" value="c">c. 7</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-offset-5 col-lg-2 alert-msg text-center">
+                    <input class="btn btn-default" type="submit" data-url="{{ path('eleve_remue_meninges_quizz') }}"value="Valider">
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/bootstrap-3.3.6-dist/js/bootstrap.js') }}"></script>
+    <script type="text/javascript">
+        $('input[type=submit]').on('click',function () {
+
+            var input = $('input:checked');
+
+            var Q1 = input[0]['value'];
+            var Q2 = input[1]['value'];
+            var Q3 = input[2]['value'];
+            var Q4 = input[3]['value'];
+            var Q5 = input[4]['value'];
+            var Q6 = input[5]['value'];
+            var Q7 = input[6]['value'];
+            var Q8 = input[7]['value'];
+            var Q9 = input[8]['value'];
+            var Q10 = input[9]['value'];
+            var Q11 = input[10]['value'];
+            var Q12 = input[11]['value'];
+            var Q13 = input[12]['value'];
+
+            var url = $(this).data('url');
+            var data = {'Q1':Q1,'Q2':Q2,'Q3':Q3,'Q4':Q4,'Q5':Q5,
+                'Q6':Q6,'Q7':Q7,'Q8':Q8,'Q9':Q9,'Q10':Q10,
+                'Q11':Q11,'Q12':Q12,'Q13':Q13};
+
+            $.post(url,data,function (data) {
+
+                if(data.alert)
+                {
+                    $('.transparent .alert-msg .alert.alert-success').remove();
+                    $('.transparent .alert-msg .alert.alert-danger').remove();
+                    $('.transparent .alert-msg').append(data.alert)
+                }
+                if(data.error_rep)
+                {
+                    $('.transparent .alert-msg .alert.alert-success').remove();
+                    $('.transparent .alert-msg .alert.alert-danger').remove();
+                    $('.transparent .alert-msg').append(data.error_rep);
+                }
+
+            });
+
+
+
+        })
+    </script>
+{% endblock %}
