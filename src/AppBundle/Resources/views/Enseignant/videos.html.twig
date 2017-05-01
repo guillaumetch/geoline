@@ -12,8 +12,7 @@
             <div class="col-lg-2" id="logo_geoline">
                 <a href="{{ path('home') }}"><img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px"></a>
             </div>
-            <div class="col-lg-offset-3 col-lg-2">
-                <br>
+            <div class="col-lg-offset-3 col-lg-2 padding2">
                 <a class="btn btn-default">Session Enseignant > Videos</a>
             </div>
         </div>
@@ -22,23 +21,22 @@
                 <div class="col-lg-offset-1 col-lg-5" id="documentaire">
                     <p class="text-center">Documentaires</p>
                     <ul>
-                        <li>Les unités de la centrale géothermiquede Bouillante</li>
-                        <li>Bouillante capitale de la géothermie</li>
-                        <li>La Dominique l’île 100% verte</li>
-                        <li>Géothermie le souffle de la Caraïbe</li>
+                        <li><a href="https://www.youtube.com/watch?v=QXeebAk9t-0" target="_blank">Les unités de la centrale géothermiquede Bouillante</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=DgFcVouaxaE" target="_blank">Bouillante capitale de la géothermie</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=fZvAL3bfqwY" target="_blank">La Dominique l’île 100% verte</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=GGbhCJefTSA" target="_blank">Géothermie le souffle de la Caraïbe</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-offset-1 col-lg-5" id="mission" >
                     <p class="text-center">Mission-GEOTREF</p>
                     <ul>
-                        <li>Présentation et objectifs de la mission sur
-                            ANTEA</li>
-                        <li>L’objectif du dragage</li>
-                        <li>Méthodologie de recueil : la drague</li>
-                        <li>En pratique, la drague …</li>
-                        <li> Méthodologie de recueil : la sonde
-                            multiparamétrique</li>
-                        <li>La combinaison de survie</li>
+                        <li><a href="https://youtu.be/s-fdfDkvW1w" target="_blank">Présentation et objectifs de la mission sur ANTEA - partie 1</a></li>
+                        <li><a href="https://youtu.be/5acPkTUXJso" target="_blank">Présentation et objectifs de la mission sur ANTEA - partie 2</a></li>
+                        <li><a href="https://youtu.be/uPspv2g0oxY" target="_blank">Présentation et objectifs de la mission sur ANTEA - partie 3</a></li>
+                        <li><a href="https://www.youtube.com/watch?v=mSCQLj_NpAQ" target="_blank">L’utilité du dragage</a></li>
+                        <li><a href="https://youtu.be/lHXuveWLmeQ" target="_blank">Le dragage</a></li>
+                        <li><a href="https://youtu.be/Tej7lZexRkk" target="_blank">Démonstration : le dragage en mer</a></li>
+                        <li><a href="https://youtu.be/Jbrl32dPsSU" target="_blank">La combinaison de survie</a></li>
                     </ul>
                 </div>
             </div>
@@ -51,16 +49,4 @@
             <li class="active"><a href="{{ path('enseignant_videos') }}">Videos</a></li>
         </ol>
     </footer>
-
-
-{% endblock %}
-
-{% block javascripts %}
-    <script>
-
-        $('#computer').on('click',function(){
-            $('.element').removeClass("hide");
-        });
-
-    </script>
 {% endblock %}

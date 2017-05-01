@@ -15,14 +15,13 @@
             <div class="col-lg-2" id="logo_geoline">
                 <a href="{{ path('home') }}"><img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px"></a>
             </div>
-            <div class="col-lg-offset-3 col-lg-2">
-                <br>
+            <div class="col-lg-offset-3 col-lg-2 padding2">
                 <a class="btn btn-default">Session Eleve > Remue-meninges > Quels pays ?</a>
             </div>
         </div>
         <div class="col-lg-offset-1 col-lg-10 transparent">
             <br>
-            <p><strong>Quels pays : Clique sur les pays producteurs d'électricité géothermique. Sélectionne-les avant que le chrono se termine. Tu as 20 secondes. <br>(Ctrl + clic pour sélectionner plusieurs pays)</strong></p>
+            <p><strong>Quels pays : retrouve l'emplacement des pays sur ces deux cartes. Que peutx-tu en conclure sur les contextes géologiques propices à la production d'électricité géothermique ?</strong></p>
             <br>
             <div class="col-lg-6 text-center">
                 <img src="{{ asset('bundles/app/img/questions-carte-1.jpg') }}"  width="480" height="240">
@@ -37,7 +36,7 @@
                 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#carte2">Compléter la carte</button>
 
             </div>
-            <form class="myform" method="post" action="{{ path('eleve_remue_meninges_quels_pays_2') }}">
+            <form class="myform" method="post" action="{{ path('eleve_remue_meninges_quels_pays_2') }}" autocomplete="off">
                 <div class="modal fade" id="carte1" role="dialog">
                     <div class="modal-dialog modal-lg">
                         <!-- Modal content-->
@@ -48,7 +47,7 @@
                             </div>
                             <div class="modal-body text-center">
                                 <p><strong>Compléte la carte à l'aide de la liste des pays suivante : <br>Italie - Antilles Françaises - Philippines - États-Unis - Japon - Mexique - Indonésie - Islande - Nouvelle-Zélande </strong></p>
-                                <img src="{{ asset('bundles/app/img/questions-carte-1.jpg') }}"  width="480" height="240">
+                                <img src="{{ asset('bundles/app/img/questions-carte-1.jpg') }}"  width="640" height="480">
                                 <div class="panel-body">
                                     <label>1.
                                         <input class="form-control" type="text" name="rp1c1">
@@ -96,7 +95,7 @@
                             </div>
                             <div class="modal-body text-center">
                                 <p><strong>Compléte la carte à l'aide de la liste des pays suivante : <br>Italie - Antilles Françaises - Philippines - États-Unis - Japon - Mexique - Indonésie - Islande - Nouvelle-Zélande </strong></p>
-                                <img src="{{ asset('bundles/app/img/questions-carte-2.jpg') }}"  width="480" height="240">
+                                <img src="{{ asset('bundles/app/img/questions-carte-2.jpg') }}"  width="640" height="480">
                                 <div class="panel-body">
                                     <label>1.
                                         <input class="form-control" type="text" name="rp1c2">
@@ -133,6 +132,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-offset-3 col-lg-6">
+                    <br><br>
+                    <p>Je peux en conclure que les principaux <input type="text" name="rp1_text"> propices à la production d’électricité
+                    géothermiques sont les zones à <input type="text" name="rp2_text"> flux géothermique associées au magmatisme de
+                        <input type="text" name="rp3_text"> et au magmatisme de <input type="text" name="rp4_text"></p>
+                    <br><br>
+                </div>
                 <div class="col-lg-offset-4 col-lg-4 alert-msg text-center">
                     <input class="btn btn-default" type="submit" value="Valider">
                     <br>
@@ -141,6 +147,14 @@
             </form>
         </div>
     </div>
+    <br>
+    <footer class="navbar-fixed-bottom">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('eleve') }}">Session Eleve</a></li>
+            <li class="active"><a href="{{ path('eleve_remue_meninges') }}">Remue-Meninges</a></li>
+            <li class="active"><a href="{{ path('eleve_remue_meninges_quels_pays_2') }}">Quel(s) pays ?</a></li>
+        </ol>
+    </footer>
 {% endblock %}
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

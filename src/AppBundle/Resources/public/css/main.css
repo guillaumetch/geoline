@@ -32,11 +32,26 @@
     color:black;
 }
 
-#container_intro,#documentaire,#mission,#legende,#documents,#ressources
+#container_intro,#documentaire,#mission,#legende,#documents,#ressources,#notes
 {
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.7);
+    padding:2%;
 }
 
+#documentaire a,#mission a,#documents a,#ressources a{
+    color:black;
+}
+ul{
+    line-height: 200%;
+}
+
+.padding2{
+
+    padding:2%;
+}
+.margin_top_2{
+    margin-top: 2%;
+}
 #u{
     text-decoration: underline;
 }
@@ -73,7 +88,7 @@
     color:red;
 }
 .transparent{
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.7);
 }
 
 .round_orange{
@@ -117,6 +132,10 @@
 
 #selectable .ui-selecting { background: #FECA40; }
 #selectable .ui-selected { background: #F39814; color: white; }
+
+#form_create textarea,#form_update textarea{
+    height: 250px;
+}
 
 
 

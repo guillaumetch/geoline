@@ -13,22 +13,22 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-2" id="logo_geoline">
-                <a href="{{ path('home') }}"><img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px"></a>
-            </div>
-            <div class="col-lg-offset-3 col-lg-2 text-center">
+                <img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px">
                 <br>
+                <a class="btn btn-default margin_top_2" href="{{ path("eleve") }}"><span class="glyphicon glyphicon-arrow-left"></span> Retour</a>
+            </div>
+            <div class="col-lg-offset-3 col-lg-2 text-center padding2">
                 <a class="btn btn-default">Session Eleve</a>
             </div>
         </div>
-        <div class="col-lg-offset-1 col-lg-10 transparent">
-            <br>
+        <div class="col-lg-offset-1 col-lg-10 transparent" id="notes">
             <div class="col-lg-12 text-center">
                 <div class="col-lg-offset-4 col-lg-4">
                     <a class="btn btn-success" href="{{ path('eleve_notes_ajout') }}">Ajouter une note</a>
                 </div>
             </div>
             <br><br>
-            <div class="panel-group">
+            <div class="col-lg-12 panel-group margin_top_2">
                 {% for note in notes %}
                     <div class="col-lg-3">
                         <div class="panel panel-default">

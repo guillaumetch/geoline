@@ -13,10 +13,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-2" id="logo_geoline">
-                <a href="{{ path('home') }}"><img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px"></a>
-            </div>
-            <div class="col-lg-offset-3 col-lg-2">
+                <img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px">
                 <br>
+                <a class="btn btn-default margin_top_2" href="{{ path("eleve_remue_meninges") }}"><span class="glyphicon glyphicon-arrow-left"></span> Retour</a>
+            </div>
+            <div class="col-lg-offset-3 col-lg-2 padding2">
                 <a class="btn btn-default">Session Eleve > Remue-meninges > Reconstitution</a>
             </div>
         </div>
@@ -25,7 +26,7 @@
         <div class="row">
             <div class="col-lg-offset-1 col-lg-10 transparent" id="container_drag_drop">
                 <br>
-                <p><strong>Reconstitution: À l'aide des vidéos (...) reconstitue la chronologie des méthodologies de recueil avec <span style="color:orange"> la drague (frise orange)</span> et avec <span style="color:blue"> la sonde multiparamétrique (frise bleue) </span> en remettant les videos suivantes dans l'ordre.</strong></p>
+                <p><strong>Reconstitution: À l'aide de la vidéo "Démonstration : le dragage en mer" située dans Mission - GEOTREF reconstitue la chronologie de la méthodologie de recueil.</strong></p>
                 <br>
                 <br>
                 <form class="myform" method="post" action="{{ path('eleve_remue_meninges_reconstitution') }}">

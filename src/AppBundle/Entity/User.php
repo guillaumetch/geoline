@@ -21,6 +21,8 @@ class User extends BaseUser
         $this->setLevel1(true);
         $this->setLevel2(false);
         $this->setLevel3(false);
+        $this->setLevel4(false);
+        $this->setLevel5(false);
         $this->setRoles(array("ROLE_USER"));
         $this->notes = new ArrayCollection();
     }
@@ -54,6 +56,22 @@ class User extends BaseUser
      * @ORM\Column(name="level3", type="boolean", options={"default":false})
      */
     protected $level3;
+
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="level4", type="boolean", options={"default":false})
+     */
+    protected $level4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="level5", type="boolean", options={"default":false})
+     */
+    protected $level5;
 
     /**
      * @ORM\OneToMany(targetEntity="Note", mappedBy="user")
@@ -158,6 +176,38 @@ class User extends BaseUser
     public function getNotes()
     {
         return $this->notes;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLevel4()
+    {
+        return $this->level4;
+    }
+
+    /**
+     * @param string $level4
+     */
+    public function setLevel4($level4)
+    {
+        $this->level4 = $level4;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLevel5()
+    {
+        return $this->level5;
+    }
+
+    /**
+     * @param string $level5
+     */
+    public function setLevel5($level5)
+    {
+        $this->level5 = $level5;
     }
 
 }

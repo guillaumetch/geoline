@@ -24,9 +24,9 @@ class MainController extends Controller
      */
     public function enseignantAction (Request $request)
     {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ENSEIGNANT')) {
+        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ENSEIGNANT')) {
             return $this->redirectToRoute('home');
-        }
+        }*/
         return $this->render('@App/Enseignant/index.html.twig');
     }
 
@@ -35,9 +35,9 @@ class MainController extends Controller
      */
     public function enseignantVideoAction (Request $request)
     {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ENSEIGNANT')) {
+        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ENSEIGNANT')) {
             return $this->redirectToRoute('home');
-        }
+        }*/
         return $this->render('@App/Enseignant/videos.html.twig');
     }
 
@@ -46,9 +46,9 @@ class MainController extends Controller
      */
     public function enseignantPhotosAction (Request $request)
     {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ENSEIGNANT')) {
+       /* if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ENSEIGNANT')) {
             return $this->redirectToRoute('home');
-        }
+        }*/
         return $this->render('@App/Enseignant/photos.html.twig');
     }
 
@@ -57,9 +57,9 @@ class MainController extends Controller
      */
     public function enseignantDocumentsAction (Request $request)
     {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ENSEIGNANT')) {
+       /* if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ENSEIGNANT')) {
             return $this->redirectToRoute('home');
-        }
+        }*/
         return $this->render('@App/Enseignant/documents.html.twig');
     }
 
@@ -68,9 +68,9 @@ class MainController extends Controller
      */
     public function eleveAction (Request $request)
     {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }
+        }*/
         return $this->render('@App/Eleve/index.html.twig');
     }
 
@@ -79,9 +79,9 @@ class MainController extends Controller
      */
     public function eleveMediasAction (Request $request)
     {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }
+        }*/
         return $this->render('@App/Eleve/medias.html.twig');
     }
 
@@ -90,9 +90,9 @@ class MainController extends Controller
      */
     public function eleveRessourcesAction (Request $request)
     {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }
+        }*/
         return $this->render('@App/Eleve/ressources.html.twig');
     }
 
@@ -101,96 +101,10 @@ class MainController extends Controller
      */
     public function eleveRemueMeningesAction (Request $request)
     {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }
+        }*/
         return $this->render('@App/Eleve/remue_meninges.html.twig');
-    }
-
-    /**
-     * @Route("/eleve/remue-meninges/centrale", name="eleve_remue_meninges_centrale")
-     */
-    public function eleveRemueMeningesCentraleAction (Request $request)
-    {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
-            return $this->redirectToRoute('home');
-        }
-
-        if($request->isXmlHttpRequest())
-        {
-            $rp1 = $request->get('rp1');
-            $rp2 = $request->get('rp2');
-            $rp3 = $request->get('rp3');
-            $rp4 = $request->get('rp4');
-            $rp5 = $request->get('rp5');
-            $rp6 = $request->get('rp6');
-            $rp7 = $request->get('rp7');
-
-            if($rp1 == 'Bouillante' || $rp1 =='bouillante')
-            {
-                if($rp2 == 'deux')
-                {
-                    if($rp3 == 'eau')
-                    {
-                        if($rp4 == 'vapeur')
-                        {
-                            if($rp5 == 'fluides')
-                            {
-                                if($rp6 == 'électricité')
-                                {
-                                    if($rp7 == 'mer')
-                                    {
-
-                                        $message ="Félicitations vous avez terminé le remue-méninge : La centrale de Bouillante.";
-                                        $alert = $this->renderView('AppBundle:Eleve:alert.html.twig',array('message'=>$message));
-                                        return new JsonResponse(array('alert'=>$alert));
-                                    }
-                                    else
-                                    {
-                                        $rp = "rp7";
-                                        return new JsonResponse(array('rp'=>$rp));
-                                    }
-                                }
-                                else
-                                {
-                                    $rp = "rp6";
-                                    return new JsonResponse(array('rp'=>$rp));
-                                }
-                            }
-                            else
-                            {
-                                $rp = "rp5";
-                                return new JsonResponse(array('rp'=>$rp));
-                            }
-                        }
-                        else
-                        {
-                            $rp = "rp4";
-                            return new JsonResponse(array('rp'=>$rp));
-                        }
-                    }
-                    else
-                    {
-                        $rp = "rp3";
-                        return new JsonResponse(array('rp'=>$rp));
-                    }
-                }
-                else
-                {
-                    $rp = "rp2";
-                    return new JsonResponse(array('rp'=>$rp));
-                }
-            }
-            else
-            {
-                $rp = "rp1";
-                return new JsonResponse(array('rp'=>$rp));
-            }
-        }
-        else{
-            return $this->render('@App/Eleve/jeu_centrale_bouillante.html.twig');
-        }
-
     }
 
     /**
@@ -198,9 +112,9 @@ class MainController extends Controller
      */
     public function eleveRemueMeningesImagesAssocAction(Request $request)
     {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }
+        }*/
 
         if($request->isXmlHttpRequest())
         {
@@ -241,9 +155,9 @@ class MainController extends Controller
      */
     public function eleveRemueMeningesReconstitutionAction(Request $request)
     {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }
+        }*/
 
         if($request->isXmlHttpRequest())
         {
@@ -270,7 +184,15 @@ class MainController extends Controller
                 $alert = $this->renderView('AppBundle:Eleve:alert.html.twig',array('message'=>$message));
                 $userManager = $this->get('fos_user.user_manager');
                 $user = $this->getUser();
-                $user->setLevel3(true);
+                $user->setLevel2(true);
+
+                $level2 = $user->getLevel2();
+                $level3 = $user->getLevel3();
+
+                if($level2 === true  && $level3 === true){
+                    $user->setLevel4(true);
+                }
+
                 $userManager->updateUser($user);
                 return new JsonResponse(array('alert'=>$alert));
             }
@@ -288,9 +210,9 @@ class MainController extends Controller
      */
     public function eleveRemueMeningesSouviensToi(Request $request)
     {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }
+        }*/
 
         if($request->isXmlHttpRequest())
         {
@@ -347,6 +269,7 @@ class MainController extends Controller
             {
                 $message ="Félicitations vous avez terminé le remue-méninge : Mise à niveau.";
                 $alert = $this->renderView('AppBundle:Eleve:alert.html.twig',array('message'=>$message));
+
                 $userManager = $this->get('fos_user.user_manager');
                 $user = $this->getUser();
                 $user->setLevel2(true);
@@ -367,9 +290,9 @@ class MainController extends Controller
      */
     public function eleveRemueMeningesQuelsPays(Request $request)
     {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }
+        }*/
 
         if($request->isXmlHttpRequest())
         {
@@ -458,9 +381,9 @@ class MainController extends Controller
      */
     public function eleveRemueMeningesQuelsPays2(Request $request)
     {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }
+        }*/
 
         if($request->isXmlHttpRequest())
         {
@@ -483,6 +406,20 @@ class MainController extends Controller
             $rp7c2 = "Indonésie";
             $rp8c2 = "Philippines";
             $rp9c2 = "Japon";
+
+            $rp1_text_s = $request->get('rp1_text');
+            $rp2_text_s = $request->get('rp2_text');
+            $rp3_text_s = $request->get('rp3_text');
+            $rp4_text_s = $request->get('rp4_text');
+
+            $rp1_text = "contextes géologiques";
+            $rp2_text = "fort";
+            $rp3_text = "subduction";
+            $rp4_text = "point chaud";
+
+            $rp_text = $rp1_text.$rp2_text.$rp3_text.$rp4_text;
+
+            $rp_text_s = $rp1_text_s.$rp2_text_s.$rp3_text_s.$rp4_text_s;
 
             $rp1c1_s = $request->get('rp1c1');
             $rp2c1_s = $request->get('rp2c1');
@@ -510,8 +447,8 @@ class MainController extends Controller
             $rpc1_s = $rp1c1_s.$rp2c1_s.$rp3c1_s.$rp4c1_s.$rp5c1_s.$rp6c1_s.$rp7c1_s.$rp8c1_s.$rp9c1_s;
             $rpc2_s = $rp1c2_s.$rp2c2_s.$rp3c2_s.$rp4c2_s.$rp5c2_s.$rp6c2_s.$rp7c2_s.$rp8c2_s.$rp9c2_s;
 
-            if($rpc1 === $rpc1_s && $rpc2 === $rpc2_s){
-                $message ="Félicitations vous avez terminé le remue-méninge : Quizz.";
+            if($rpc1 === $rpc1_s && $rpc2 === $rpc2_s && $rp_text_s === $rp_text){
+                $message ="Félicitations vous avez terminé le remue-méninge : Quels pay(s) ?.";
                 $alert = $this->renderView('AppBundle:Eleve:alert.html.twig',array('message'=>$message));
                 return new JsonResponse(array('alert'=>$alert));
             }
@@ -529,9 +466,9 @@ class MainController extends Controller
      */
     public function eleveRemueMeningesQuizz(Request $request)
     {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }
+        }*/
 
         if($request->isXmlHttpRequest()){
 
@@ -559,6 +496,14 @@ class MainController extends Controller
                 $userManager = $this->get('fos_user.user_manager');
                 $user = $this->getUser();
                 $user->setLevel3(true);
+
+                $level2 = $user->getLevel2();
+                $level3 = $user->getLevel3();
+
+                if($level2 === true  && $level3 === true){
+                    $user->setLevel4(true);
+                }
+
                 $userManager->updateUser($user);
                 return new JsonResponse(array('alert'=>$alert));
             }
@@ -577,9 +522,9 @@ class MainController extends Controller
      */
     public function eleveNotes(Request $request)
     {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }
+        }*/
 
         $user = $this->getUser();
         $notes = $user->getNotes();
@@ -593,9 +538,9 @@ class MainController extends Controller
      */
     public function eleveNotesAjout(Request $request)
     {
-        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }
+        }*/
 
         $note = new Note();
         $form_create = $this->createForm(NoteType::class,$note);

@@ -13,19 +13,26 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-2" id="logo_geoline">
-                <a href="{{ path('home') }}"><img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px"></a>
-            </div>
-            <div class="col-lg-offset-3 col-lg-2">
+                <img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px">
                 <br>
+                <a class="btn btn-default margin_top_2" href="{{ path("eleve_remue_meninges") }}"><span class="glyphicon glyphicon-arrow-left"></span> Retour</a>
+            </div>
+            <div class="col-lg-offset-3 col-lg-2 padding2">
                 <a class="btn btn-default">Session Eleve > Remue-meninges > Quels pays ?</a>
             </div>
         </div>
         <div class="col-lg-offset-1 col-lg-10 transparent">
             <br>
-            <p><strong>Quels pays : Clique sur les pays producteurs d'électricité géothermique. Sélectionne-les avant que le chrono se termine. Tu as 20 secondes. <br>(Ctrl + clic pour sélectionner plusieurs pays)</strong></p>
+            <p><strong>Quels pays : Clique sur les pays producteurs d'électricité géothermique. Sélectionne-les avant que le chrono se termine. Tu as 30 secondes. <br>(Ctrl + clic pour sélectionner plusieurs pays)</strong></p>
             <br>
-            <div class="row"><div class="col-lg-offset-5 col-lg-2"><strong><span id="timer">00:20</span></strong></div></div>
-            <div class="row text-center" id="selectable">
+            <div class="row">
+                <div class="col-lg-offset-5 col-lg-2 text-center">
+                    <button class="btn btn-primary">Démarrer</button>
+                    <br><br>
+                    <strong><span id="timer">00:30</span></strong>
+                </div>
+            </div>
+            <div class="row text-center margin_top_2" id="selectable">
                 <div class="round col-lg-3 ui-widget-content">
                     <p>Australie</p>
                 </div>
@@ -75,7 +82,7 @@
                     <p>Chine</p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row margin_top_2">
                 <div class="col-lg-offset-5 col-lg-2 text-center button_next">
                     <input class="btn btn-default" type="submit" value="Valider">
                 </div>
@@ -83,7 +90,14 @@
             <br>
         </div>
     </div>
-    </div>
+    <br>
+    <footer class="navbar-fixed-bottom">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('eleve') }}">Session Eleve</a></li>
+            <li class="active"><a href="{{ path('eleve_remue_meninges') }}">Remue-Meninges</a></li>
+            <li class="active"><a href="{{ path('eleve_remue_meninges_quels_pays') }}">Quel(s) pays ?</a></li>
+        </ol>
+    </footer>
 {% endblock %}
 {% block javascripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -116,48 +130,51 @@
     </script>
 
     <script type="text/javascript">
-        var interval = setInterval(function() {
-            var timer = $('span').html();
-            timer = timer.split(':');
-            var minutes = parseInt(timer[0], 10);
-            var seconds = parseInt(timer[1], 10);
-            seconds -= 1;
-            if (minutes < 0) return clearInterval(interval);
-            if (minutes < 10 && minutes.length != 2) minutes = '0' + minutes;
-            if (seconds < 0 && minutes != 0) {
-                minutes -= 1;
-                seconds = 59;
-            }
-            else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
-            $('span').html(minutes + ':' + seconds);
+        $('.btn.btn-primary').on('click',function () {
+            var interval = setInterval(function() {
+                var timer = $('#timer').html();
+                timer = timer.split(':');
+                var minutes = parseInt(timer[0], 10);
+                var seconds = parseInt(timer[1], 10);
+                seconds -= 1;
+                if (minutes < 0) return clearInterval(interval);
+                if (minutes < 10 && minutes.length != 2) minutes = '0' + minutes;
+                if (seconds < 0 && minutes != 0) {
+                    minutes -= 1;
+                    seconds = 59;
+                }
+                else if (seconds < 10 && length.seconds != 2) seconds = '0' + seconds;
+                $('#timer').html(minutes + ':' + seconds);
 
-            if (minutes == 0 && seconds == 0)
-            {
-                clearInterval(interval);
+                if (minutes == 0 && seconds == 0)
+                {
+                    clearInterval(interval);
 
-                $('input[type=submit]').prop('disabled',true);
+                    $('input[type=submit]').prop('disabled',true);
 
-                var url = $(this).data('url');
-                var data = {'rps':$('.ui-selected').text()};
+                    var url = $(this).data('url');
+                    var data = {'rps':$('.ui-selected').text()};
 
-                $.post(url,data,function(data){
-                    if(data.alert)
-                    {
-                        $('.transparent .alert.alert-success').remove();
-                        $('.transparent .alert.alert-danger').remove();
-                        $('.transparent').append(data.alert)
-                        $('.transparent .row .button_next').append(data.button_next);
-                    }
-                    if(data.error_rep)
-                    {
-                        $('.transparent .row .button_next').remove();
-                        $('.transparent .alert.alert-success').remove();
-                        $('.transparent .alert.alert-danger').remove();
-                        $('.transparent').append(data.error_rep);
-                    }
-                });
-            }
-        }, 1000);
+                    $.post(url,data,function(data){
+                        if(data.alert)
+                        {
+                            $('.transparent .alert.alert-success').remove();
+                            $('.transparent .alert.alert-danger').remove();
+                            $('.transparent').append(data.alert)
+                            $('.transparent .row .button_next').append(data.button_next);
+                        }
+                        if(data.error_rep)
+                        {
+                            $('.transparent .row .button_next').remove();
+                            $('.transparent .alert.alert-success').remove();
+                            $('.transparent .alert.alert-danger').remove();
+                            $('.transparent').append(data.error_rep);
+                        }
+                    });
+                }
+            }, 1000);
+        });
+
     </script>
 
 {% endblock %}

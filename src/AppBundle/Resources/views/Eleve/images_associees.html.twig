@@ -9,10 +9,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-2" id="logo_geoline">
-                <a href="{{ path('home') }}"><img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px"></a>
-            </div>
-            <div class="col-lg-offset-3 col-lg-2">
+                <img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px">
                 <br>
+                <a class="btn btn-default margin_top_2" href="{{ path("eleve_remue_meninges") }}"><span class="glyphicon glyphicon-arrow-left"></span> Retour</a>
+            </div>
+            <div class="col-lg-offset-3 col-lg-2 padding2">
                 <a class="btn btn-default">Session Eleve > Remue-meninges > Images Associées</a>
             </div>
         </div>
@@ -48,9 +49,9 @@
         </div>
     </div>
     <br>
-    <footer class="navbar">
+    <footer class="navbar-fixed-bottom">
         <ol class="breadcrumb">
-            <li><a href="{{ path('eleve') }}">Session Enseignant</a></li>
+            <li><a href="{{ path('eleve') }}">Session Eleve</a></li>
             <li class="active"><a href="{{ path('eleve_remue_meninges') }}">Remue-Meninges</a></li>
             <li class="active"><a href="{{ path('eleve_remue_meninges_images_associees') }}">Images Associées</a></li>
         </ol>
