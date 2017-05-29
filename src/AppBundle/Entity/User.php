@@ -2,10 +2,10 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Model\User as BaseUser;
-use Doctrine\ORM\Mapping\JoinColumn;
-use Doctrine\Common\Collections\ArrayCollection;
+    use Doctrine\ORM\Mapping as ORM;
+    use FOS\UserBundle\Model\User as BaseUser;
+    use Doctrine\ORM\Mapping\JoinColumn;
+    use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * User
@@ -57,8 +57,6 @@ class User extends BaseUser
      */
     protected $level3;
 
-
-
     /**
      * @var string
      *
@@ -77,6 +75,13 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Note", mappedBy="user")
      */
     protected $notes;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="errors", type="integer", options={"default":0})
+     */
+    protected $errors;
 
     /**
      * @return string
@@ -208,6 +213,22 @@ class User extends BaseUser
     public function setLevel5($level5)
     {
         $this->level5 = $level5;
+    }
+
+    /**
+     * @return string
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
+
+    /**
+     * @param string $errors
+     */
+    public function setErrors($errors)
+    {
+        $this->errors = $errors;
     }
 
 }

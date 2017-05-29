@@ -46,7 +46,7 @@
                                 <h4 class="modal-title">Quizz : Quels pays ?</h4>
                             </div>
                             <div class="modal-body text-center">
-                                <p><strong>Compléte la carte à l'aide de la liste des pays suivante : <br>Italie - Antilles Françaises - Philippines - États-Unis - Japon - Mexique - Indonésie - Islande - Nouvelle-Zélande </strong></p>
+                                <p><strong>Compléte la carte à l'aide de la liste des pays suivante : <br>Italie - Antilles Françaises - Philippines - Etats-Unis - Japon - Mexique - Indonésie - Islande - Nouvelle-Zélande </strong></p>
                                 <img src="{{ asset('bundles/app/img/questions-carte-1.jpg') }}"  width="640" height="480">
                                 <div class="panel-body">
                                     <label>1.
@@ -94,7 +94,7 @@
                                 <h4 class="modal-title">Quizz : Quels Pays ?</h4>
                             </div>
                             <div class="modal-body text-center">
-                                <p><strong>Compléte la carte à l'aide de la liste des pays suivante : <br>Italie - Antilles Françaises - Philippines - États-Unis - Japon - Mexique - Indonésie - Islande - Nouvelle-Zélande </strong></p>
+                                <p><strong>Compléte la carte à l'aide de la liste des pays suivante : <br>Italie - Antilles Françaises - Philippines - Etats-Unis - Japon - Mexique - Indonésie - Islande - Nouvelle-Zélande </strong></p>
                                 <img src="{{ asset('bundles/app/img/questions-carte-2.jpg') }}"  width="640" height="480">
                                 <div class="panel-body">
                                     <label>1.
@@ -139,7 +139,7 @@
                         <input type="text" name="rp3_text"> et au magmatisme de <input type="text" name="rp4_text"></p>
                     <br><br>
                 </div>
-                <div class="col-lg-offset-4 col-lg-4 alert-msg text-center">
+                <div class="col-lg-offset-2 col-lg-8 alert-msg text-center">
                     <input class="btn btn-default" type="submit" value="Valider">
                     <br>
                     <br>
@@ -176,6 +176,14 @@
                     $('.transparent .alert-msg .alert.alert-success').remove();
                     $('.transparent .alert-msg .alert.alert-danger').remove();
                     $('.transparent .alert-msg').append(data.error_rep);
+
+                    if(data.rp){
+                        $('input[name=rp1_text]').val(data.rp['rp1']);
+                        $('input[name=rp2_text]').val(data.rp['rp2']);
+                        $('input[name=rp3_text]').val(data.rp['rp3']);
+                        $('input[name=rp4_text]').val(data.rp['rp4']);
+                        $('input[type=submit]').prop('disabled',true);
+                    }
                 }
             },'json');
             return false;

@@ -40,29 +40,26 @@
                 <br>
                 <br>
                 <br>
-                <div class="col-lg-12 margin_top_2 text-center">
-                    <div class="col-lg-3 text-center element hide">
+                <div class="padding2 col-lg-12 margin_top_2 text-center">
+                    <div class="col-lg-3 text-center">
                         <a href="{{ path('eleve_ressources') }}"><i class="fa fa-folder fa-3x"></i></a>
                         <p>Ressources</p>
                     </div>
 
-                    <div class="col-lg-3 text-center element hide">
+                    <div class="col-lg-3 text-center">
                         <a href="{{ path('eleve_remue_meninges') }}"><i class="fa fa-gamepad fa-3x"></i></a>
                         <p>Remue-méninges</p>
                     </div>
-                    <div class="col-lg-3 text-center element hide">
+                    <div class="col-lg-3 text-center">
                         <a href="{{ path('eleve_medias') }}"><i class="fa fa-play-circle-o fa-3x"></i></a>
                         <p>Médias</p>
                     </div>
                     {% if app.user %}
-                        <div class="col-lg-3 text-center element hide">
+                        <div class="col-lg-3 text-center">
                             <a href="{{ path('eleve_notes') }}"><i class="fa fa-file-text-o fa-3x"></i></a>
                             <p>Notes</p>
                         </div>
                     {% endif %}
-                    <div class="col-lg-offset-5 col-lg-1 text-center">
-                        <a id="computer"><i class="fa fa-laptop fa-5x"></i></a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -73,16 +70,4 @@
             <li class="active"><a href="{{ path('eleve') }}">Introduction</a></li>
         </ol>
     </footer>
-
-    <script type=application/javascript src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-{% endblock %}
-
-{% block javascripts %}
-    <script>
-
-        $('#computer').on('click',function(){
-            $('.element').removeClass("hide");
-        });
-
-    </script>
 {% endblock %}

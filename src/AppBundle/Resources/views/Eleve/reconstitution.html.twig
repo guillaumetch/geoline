@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-lg-offset-1 col-lg-10 transparent" id="container_drag_drop">
                 <br>
-                <p><strong>Reconstitution: À l'aide de la vidéo "Démonstration : le dragage en mer" située dans Mission - GEOTREF reconstitue la chronologie de la méthodologie de recueil.</strong></p>
+                <p><strong>Reconstitution:</strong> À l'aide de la vidéo "Démonstration : le dragage en mer" située dans Mission - GEOTREF reconstitue la chronologie de la méthodologie de recueil.</p>
                 <br>
                 <br>
                 <form class="myform" method="post" action="{{ path('eleve_remue_meninges_reconstitution') }}">
@@ -115,17 +115,31 @@
             var data = $(this).serialize();
 
             $.post(url,data,function (data){
-                if(data.alert)
-                {
+                if(data.alert) {
+
                     $('.myform .alert.alert-success').remove();
                     $('.myform .alert.alert-danger').remove();
-                    $('.myform').append(data.alert)
+                    $('.myform').append(data.alert);
+
                 }
-                if(data.error_rep)
-                {
+                if(data.error_rep) {
+
                     $('.myform .alert.alert-success').remove();
                     $('.myform .alert.alert-danger').remove();
-                    $('.myform').append(data.error_rep)
+                    $('.myform').append(data.error_rep);
+
+                }
+
+                if(data.reponses){
+
+                    $('input[name="rp1"]').val(data.reponses['rp1']);
+                    $('input[name="rp2"]').val(data.reponses['rp2']);
+                    $('input[name="rp3"]').val(data.reponses['rp3']);
+                    $('input[name="rp4"]').val(data.reponses['rp4']);
+                    $('input[name="rp5"]').val(data.reponses['rp5']);
+
+                    $('input[type=submit]').prop('disabled',true);
+
                 }
             },'json');
             return false;

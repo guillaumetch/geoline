@@ -22,12 +22,12 @@
         <div class="row">
             <div class="col-lg-offset-2 col-lg-8 transparent">
                 <br>
-                <p>Images associées: À l'aide de tes connaissances, réécris dans chaque case à quel type de géothermie correspond chaque illustration :</p>
+                <p><strong>Images associées:</strong> À l'aide de tes connaissances, écris dans chaque case à quel type de géothermie correspond chaque illustration :</p>
                 <br>
                 <p id="propositions"> très basse énergie - basse énergie - profonde</p>
                 <br>
                 <br>
-                <form class="form-inline center" method="post" action="{{ path('eleve_remue_meninges_images_associees') }}">
+                <form class="form-inline center myform" method="post" action="{{ path('eleve_remue_meninges_images_associees') }}">
                     <div class="form-group">
                         <label for="rp1">Case 1</label>
                         <input class="form-control" type="text" name="rp1">
@@ -40,6 +40,8 @@
 
                         <input class="form-control" type="submit" value="Valider">
                     </div>
+                    <br>
+                    <br>
                 </form>
                 <br>
                 <br>
@@ -74,26 +76,26 @@
             var data = $(this).serialize();
 
             $.post(url,data,function(data){
-                var rp = data.rp;
 
-                if(rp == 'rp1')
-                {
-                    $('input[name=rp1]').addClass("error");
+                if(data.alert) {
+
+                    $('.myform .alert.alert-success').remove();
+                    $('.myform .alert.alert-danger').remove();
+                    $('.myform').append(data.alert);
+
                 }
+                if(data.error_rep) {
 
-                if(rp == 'rp2')
-                {
-                    $('input[name=rp2]').addClass("error");
+                    $('.myform .alert.alert-success').remove();
+                    $('.myform .alert.alert-danger').remove();
+                    $('.myform').append(data.error_rep);
+
                 }
-
-                if(rp == 'rp3')
-                {
-                    $('input[name=rp3]').addClass("error");
-                }
-
-                if(data.alert)
-                {
-                    $('.form-inline').after(data.alert)
+                if(data.reponses){
+                    $('input[name="rp1"]').val(data.reponses['rp1']);
+                    $('input[name="rp2"]').val(data.reponses['rp2']);
+                    $('input[name="rp3"]').val(data.reponses['rp3']);
+                    $('input[type=submit]').prop('disabled',true);
                 }
             },'json');
             return false;

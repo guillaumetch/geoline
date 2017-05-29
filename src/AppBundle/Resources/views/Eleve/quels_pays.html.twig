@@ -29,56 +29,56 @@
                 <div class="col-lg-offset-5 col-lg-2 text-center">
                     <button class="btn btn-primary">Démarrer</button>
                     <br><br>
-                    <strong><span id="timer">00:30</span></strong>
+                    <strong><span id="timer">00:10</span></strong>
                 </div>
             </div>
             <div class="row text-center margin_top_2" id="selectable">
-                <div class="round col-lg-3 ui-widget-content">
+                <div class="round col-lg-3 ui-widget-content" id="Australie">
                     <p>Australie</p>
                 </div>
-                <div class="round col-lg-3 ui-widget-content">
+                <div class="round col-lg-3 ui-widget-content" id="NZ">
                     <p>Nouvelle-Zélande</p>
                 </div>
-                <div class="round col-lg-3 ui-widget-content">
+                <div class="round col-lg-3 ui-widget-content" id="Grece">
                     <p>Grèce</p>
                 </div>
-                <div class="round col-lg-3 ui-widget-content">
+                <div class="round col-lg-3 ui-widget-content" id="Indonesie">
                     <p>Indonésie</p>
                 </div>
 
-                <div class="round col-lg-3 ui-widget-content">
+                <div class="round col-lg-3 ui-widget-content" id="Japon">
                     <p>Japon</p>
                 </div>
-                <div class="round col-lg-3 ui-widget-content">
+                <div class="round col-lg-3 ui-widget-content" id="Philippines">
                     <p>Philippines</p>
                 </div>
-                <div class="round col-lg-3 ui-widget-content">
+                <div class="round col-lg-3 ui-widget-content" id="Mexique">
                     <p>Mexique</p>
                 </div>
-                <div class="round col-lg-3 ui-widget-content">
+                <div class="round col-lg-3 ui-widget-content" id="Islande">
                     <p>Islande</p>
                 </div>
 
-                <div class="round col-lg-3 ui-widget-content">
+                <div class="round col-lg-3 ui-widget-content" id="Italie">
                     <p>Italie</p>
                 </div>
-                <div class="round col-lg-3 ui-widget-content">
+                <div class="round col-lg-3 ui-widget-content" id="France">
                     <p>France</p>
                 </div>
-                <div class="round col-lg-3 ui-widget-content">
+                <div class="round col-lg-3 ui-widget-content" id="Kenya">
                     <p>Kenya</p>
                 </div>
-                <div class="round col-lg-3 ui-widget-content">
+                <div class="round col-lg-3 ui-widget-content" id="Antilles">
                     <p>Les Antilles Françaises</p>
                 </div>
 
-                <div class="round col-lg-3 ui-widget-content">
+                <div class="round col-lg-3 ui-widget-content" id="Allemagne">
                     <p>Allemagne</p>
                 </div>
-                <div class="round col-lg-3 ui-widget-content">
+                <div class="round col-lg-3 ui-widget-content" id="EU">
                     <p>Etats-Unis</p>
                 </div>
-                <div class="round col-lg-3 ui-widget-content">
+                <div class="round col-lg-3 ui-widget-content" id="Chine">
                     <p>Chine</p>
                 </div>
             </div>
@@ -105,33 +105,15 @@
 
     <script type="text/javascript">
         $('#selectable').selectable();
+        $('input[type=submit]').prop('disabled',true);
 
-        $('.btn.btn-default').on('click',function(){
-            var url = $(this).data('url');
-            var data = {'rps':$('.ui-selected').text()};
+        var interval = null;
 
-            $.post(url,data,function(data){
-                if(data.alert)
-                {
-                    $('.transparent .alert.alert-success').remove();
-                    $('.transparent .alert.alert-danger').remove();
-                    $('.transparent').append(data.alert)
-                    $('.transparent .row .button_next').append(data.button_next);
-                }
-                if(data.error_rep)
-                {
-                    $('.transparent .row .button_next').remove();
-                    $('.transparent .alert.alert-success').remove();
-                    $('.transparent .alert.alert-danger').remove();
-                    $('.transparent').append(data.error_rep);
-                }
-            });
-        })
-    </script>
-
-    <script type="text/javascript">
         $('.btn.btn-primary').on('click',function () {
-            var interval = setInterval(function() {
+
+            $('.btn.btn-primary').prop('disabled',true);
+            $('input[type=submit]').prop('disabled',false);
+            interval = setInterval(function() {
                 var timer = $('#timer').html();
                 timer = timer.split(':');
                 var minutes = parseInt(timer[0], 10);
@@ -165,15 +147,93 @@
                         }
                         if(data.error_rep)
                         {
-                            $('.transparent .row .button_next').remove();
                             $('.transparent .alert.alert-success').remove();
                             $('.transparent .alert.alert-danger').remove();
                             $('.transparent').append(data.error_rep);
+                            $('input[type=submit]').prop('disabled',false);
+                            $('#timer').html('00:30');
+                            $('.btn.btn-primary').prop('disabled',false);
+                        }
+                        if(data.reponses){
+                            var rp1 = data.reponses['rp1'];
+                            var rp2 = data.reponses['rp2'];
+                            var rp3 = data.reponses['rp3'];
+                            var rp4 = data.reponses['rp4'];
+                            var rp5 = data.reponses['rp5'];
+                            var rp6 = data.reponses['rp6'];
+                            var rp7 = data.reponses['rp7'];
+                            var rp8 = data.reponses['rp8'];
+                            var rp9 = data.reponses['rp9'];
+
+                            $('#'+rp1).addClass('ui-selected');
+                            $('#'+rp2).addClass('ui-selected');
+                            $('#'+rp3).addClass('ui-selected');
+                            $('#'+rp4).addClass('ui-selected');
+                            $('#'+rp5).addClass('ui-selected');
+                            $('#'+rp6).addClass('ui-selected');
+                            $('#'+rp7).addClass('ui-selected');
+                            $('#'+rp8).addClass('ui-selected');
+                            $('#'+rp9).addClass('ui-selected');
+
+                            $('input[type=submit]').prop('disabled',true);
+                            $('.btn.btn-primary').prop('disabled',true);
                         }
                     });
                 }
             }, 1000);
         });
+
+        $('.btn.btn-default').on('click',function(){
+            var url = $(this).data('url');
+            var data = {'rps':$('.ui-selected').text()};
+
+            $.post(url,data,function(data){
+                if(data.alert)
+                {
+                    $('.transparent .alert.alert-success').remove();
+                    $('.transparent .alert.alert-danger').remove();
+                    $('.transparent').append(data.alert)
+                    $('.transparent .row .button_next').append(data.button_next);
+                }
+                if(data.error_rep)
+                {
+
+                    $('.transparent .alert.alert-success').remove();
+                    $('.transparent .alert.alert-danger').remove();
+                    $('.transparent').append(data.error_rep);
+                }
+                if(data.reponses){
+                    var rp1 = data.reponses['rp1'];
+                    var rp2 = data.reponses['rp2'];
+                    var rp3 = data.reponses['rp3'];
+                    var rp4 = data.reponses['rp4'];
+                    var rp5 = data.reponses['rp5'];
+                    var rp6 = data.reponses['rp6'];
+                    var rp7 = data.reponses['rp7'];
+                    var rp8 = data.reponses['rp8'];
+                    var rp9 = data.reponses['rp9'];
+
+                    $('#'+rp1).addClass('ui-selected');
+                    $('#'+rp2).addClass('ui-selected');
+                    $('#'+rp3).addClass('ui-selected');
+                    $('#'+rp4).addClass('ui-selected');
+                    $('#'+rp5).addClass('ui-selected');
+                    $('#'+rp6).addClass('ui-selected');
+                    $('#'+rp7).addClass('ui-selected');
+                    $('#'+rp8).addClass('ui-selected');
+                    $('#'+rp9).addClass('ui-selected');
+
+                    $('input[type=submit]').prop('disabled',true);
+                    clearInterval(interval);
+                    $('#timer').html('00:00');
+
+                }
+            });
+        });
+
+
+
+
 
     </script>
 

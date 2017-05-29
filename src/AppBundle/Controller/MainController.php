@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Document;
 use AppBundle\Entity\Note;
 use AppBundle\Form\NoteType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -24,9 +25,10 @@ class MainController extends Controller
      */
     public function enseignantAction (Request $request)
     {
-        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ENSEIGNANT')) {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ENSEIGNANT')) {
             return $this->redirectToRoute('home');
-        }*/
+        }
+
         return $this->render('@App/Enseignant/index.html.twig');
     }
 
@@ -35,9 +37,10 @@ class MainController extends Controller
      */
     public function enseignantVideoAction (Request $request)
     {
-        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ENSEIGNANT')) {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ENSEIGNANT')) {
             return $this->redirectToRoute('home');
-        }*/
+        }
+
         return $this->render('@App/Enseignant/videos.html.twig');
     }
 
@@ -46,9 +49,10 @@ class MainController extends Controller
      */
     public function enseignantPhotosAction (Request $request)
     {
-       /* if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ENSEIGNANT')) {
-            return $this->redirectToRoute('home');
-        }*/
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ENSEIGNANT')) {
+             return $this->redirectToRoute('home');
+        }
+
         return $this->render('@App/Enseignant/photos.html.twig');
     }
 
@@ -57,10 +61,71 @@ class MainController extends Controller
      */
     public function enseignantDocumentsAction (Request $request)
     {
-       /* if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ENSEIGNANT')) {
-            return $this->redirectToRoute('home');
-        }*/
-        return $this->render('@App/Enseignant/documents.html.twig');
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ENSEIGNANT')) {
+             return $this->redirectToRoute('home');
+        }
+
+        $repository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Document');
+        $documents = $repository->findAll();
+
+        return $this->render('@App/Enseignant/documents.html.twig',array('documents'=>$documents));
+    }
+
+    /**
+     * @Route("enseignant/documents/ajout", name="enseignant_documents_ajout")
+     */
+    public function enseignantDocumentsAjoutAction(Request $request)
+    {
+        $document = new Document();
+
+        $form_create  = $this->createForm('AppBundle\Form\DocumentType',$document);
+        $form_create->handleRequest($request);
+
+        if($form_create->isValid()){
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($document);
+
+            $em->flush();
+            return $this->redirectToRoute('enseignant_documents');
+
+        }
+        return $this->render('@App/Enseignant/documents_ajout.html.twig',array('form_create'=>$form_create->createView()));
+    }
+
+    /**
+     * @Route("enseignant/documents/modification/{id}", name="enseignant_documents_modification")
+     */
+    public function enseignantDocumentsModAction(Request $request,Document $document)
+    {
+        $form_update = $this->createForm('AppBundle\Form\DocumentType',$document);
+        $form_update->handleRequest($request);
+
+        if($form_update->isValid()){
+
+            $em = $this->getDoctrine()->getManager();
+            $em->merge($document);
+            $em->flush();
+
+            return $this->redirectToRoute('enseignant_documents');
+
+        }
+
+        return $this->render('@App/Enseignant/documents_mod.html.twig',array('form_update'=>$form_update->createView()));
+    }
+
+    /**
+     * @Route("enseignant/documents/suppression/{id}", name="enseignant_documents_suppression")
+     */
+    public function enseignantDocumentsSupprAction(Request $request,Document $document)
+    {
+        $name= $document->getDocumentName();
+        unlink('./documents/'.$name);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($document);
+        $em->flush();
+
+        return $this->redirectToRoute('enseignant_documents');
     }
 
     /**
@@ -68,9 +133,10 @@ class MainController extends Controller
      */
     public function eleveAction (Request $request)
     {
-        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }*/
+        }
+
         return $this->render('@App/Eleve/index.html.twig');
     }
 
@@ -79,9 +145,10 @@ class MainController extends Controller
      */
     public function eleveMediasAction (Request $request)
     {
-        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }*/
+        }
+
         return $this->render('@App/Eleve/medias.html.twig');
     }
 
@@ -90,9 +157,10 @@ class MainController extends Controller
      */
     public function eleveRessourcesAction (Request $request)
     {
-        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }*/
+        }
+
         return $this->render('@App/Eleve/ressources.html.twig');
     }
 
@@ -101,9 +169,9 @@ class MainController extends Controller
      */
     public function eleveRemueMeningesAction (Request $request)
     {
-        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }*/
+        }
         return $this->render('@App/Eleve/remue_meninges.html.twig');
     }
 
@@ -112,42 +180,71 @@ class MainController extends Controller
      */
     public function eleveRemueMeningesImagesAssocAction(Request $request)
     {
-        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }*/
+        }
 
-        if($request->isXmlHttpRequest())
-        {
-            $rp1 = trim($request->get('rp1'));
-            $rp2 = trim($request->get('rp2'));
-            $rp3 = trim($request->get('rp3'));
+        if ($request->isXmlHttpRequest()) {
+            $rp1_s = trim($request->get('rp1'));
+            $rp2_s = trim($request->get('rp2'));
+            $rp3_s = trim($request->get('rp3'));
 
-            if($rp1 === "très basse énergie")
-            {
-                if($rp2 === "basse énergie")
-                {
-                    if($rp3 === "profonde")
-                    {
-                        $message ="Félicitations vous avez terminé le remue-méninge : Images associées.";
-                        $alert = $this->renderView('AppBundle:Eleve:alert.html.twig',array('message'=>$message));
-                        return new JsonResponse(array('alert'=>$alert));
-                    }
-                    else{
-                        $rp = "rp3";
-                        return new JsonResponse(array('rp'=>$rp));
-                    }
-                }
-                else{
-                    $rp = "rp2";
-                    return new JsonResponse(array('rp'=>$rp));
-                }
+            $rp1 = "très basse énergie";
+            $rp2 = "basse énergie";
+            $rp3 = "profonde";
+
+            $rp = $rp1.$rp2.$rp3;
+            $rp_s = $rp1_s.$rp2_s.$rp3_s;
+
+            $userManager = $this->get('fos_user.user_manager');
+            $user = $this->getUser();
+
+            if ($rp === $rp_s) {
+
+                $message = "Félicitations vous avez terminé le remue-méninge : Images associées.";
+                $alert = $this->renderView('AppBundle:Eleve:alert.html.twig', array('message' => $message));
+
+                return new JsonResponse(array('alert' => $alert));
+
             }
             else{
-                $rp = "rp1";
-                return new JsonResponse(array('rp'=>$rp));
+
+                $alert = null;
+                $message = null;
+
+                $user->setErrors($user->getErrors()+1);
+                $userManager->updateUser($user);
+                $errors = $user->getErrors();
+
+                if($errors === 3)
+                {
+                    $message = "Voici les bonnes réponses";
+                    $alert = $this->renderView('@App/Eleve/error.html.twig',array('message'=>$message));
+                    $reponses = array('rp1'=>'très basse énergie','rp2'=>'basse énergie','rp3'=>'profonde');
+
+                    return new JsonResponse(array('error_rep'=>$alert,'reponses'=>$reponses));
+                }
+                else{
+
+                    $message ="Veuillez vérifier vos réponses.".(3-$errors)." essais restants";
+                    $alert = $this->renderView('AppBundle:Eleve:error.html.twig',array('message'=>$message));
+
+                }
+                return new JsonResponse(array('error_rep'=>$alert));
             }
+
         }
+        else{
+
+            $userManager = $this->get('fos_user.user_manager');
+            $user = $this->getUser();
+            $user->setErrors(0);
+            $userManager->updateUser($user);
+
+        }
+
         return $this->render('@App/Eleve/images_associees.html.twig');
+
     }
 
     /**
@@ -155,9 +252,9 @@ class MainController extends Controller
      */
     public function eleveRemueMeningesReconstitutionAction(Request $request)
     {
-        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }*/
+        }
 
         if($request->isXmlHttpRequest())
         {
@@ -178,6 +275,9 @@ class MainController extends Controller
             $rp_orange = $rp1.$rp2.$rp3.$rp4.$rp5;
             /*$rp_blue = $rp6.$rp7.$rp8.$rp9.$rp10;*/
 
+            $userManager = $this->get('fos_user.user_manager');
+            $user = $this->getUser();
+
             if($rp_orange === $rp_orange_attendu /*&& $rp_blue === $rp_blue_attendu*/)
             {
                 $message ="Félicitations vous avez terminé le remue-méninge : Reconstitution.";
@@ -197,10 +297,38 @@ class MainController extends Controller
                 return new JsonResponse(array('alert'=>$alert));
             }
             else{
-                $message ="Les vidéos ne sont pas classées dans le bon ordre, veuillez vérifier vos réponses.";
-                $alert = $this->renderView('AppBundle:Eleve:error.html.twig',array('message'=>$message));
+
+                $alert = null;
+                $message = null;
+
+                $user->setErrors($user->getErrors()+1);
+                $userManager->updateUser($user);
+                $errors = $user->getErrors();
+
+                if($errors === 3){
+                    $message = "Voici les bonnes réponses";
+                    $alert = $this->renderView('@App/Eleve/error.html.twig',array('message'=>$message));
+                    $reponses = array('rp1'=>'2','rp2'=>'4','rp3'=>'1','rp4'=>'5','rp5'=>'3');
+
+                    return new JsonResponse(array('error_rep'=>$alert,'reponses'=>$reponses));
+                }
+                else{
+
+                    $message ="Les vidéos ne sont pas classées dans le bon ordre, veuillez vérifier vos réponses. ".(3-$errors)." essais restants";
+                    $alert = $this->renderView('AppBundle:Eleve:error.html.twig',array('message'=>$message));
+
+                }
+
                 return new JsonResponse(array('error_rep'=>$alert));
             }
+        }
+        else{
+
+            $userManager = $this->get('fos_user.user_manager');
+            $user = $this->getUser();
+            $user->setErrors(0);
+            $userManager->updateUser($user);
+
         }
         return $this->render('@App/Eleve/reconstitution.html.twig');
     }
@@ -210,9 +338,9 @@ class MainController extends Controller
      */
     public function eleveRemueMeningesSouviensToi(Request $request)
     {
-        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }*/
+        }
 
         if($request->isXmlHttpRequest())
         {
@@ -265,23 +393,76 @@ class MainController extends Controller
 
             $rp_s = $rp1_c_s.$rp2_c_s.$rp3_c_s.$rp4_c_s.$rp1_s_s.$rp2_s_s.$rp2_s_2_s.$rp3_s_s.$rp3_s_2_s.$rp3_s_3_s.$rp4_s_s.$rp4_s_2_s.$rp1_t_s.$rp2_t_s.$rp2_t_2_s.$rp3_t_s.$rp3_t_2_s.$rp3_t_3_s.$rp4_t_s.$rp4_t_2_s;
 
+            $userManager = $this->get('fos_user.user_manager');
+            $user = $this->getUser();
+
             if($rp === $rp_s)
             {
                 $message ="Félicitations vous avez terminé le remue-méninge : Mise à niveau.";
                 $alert = $this->renderView('AppBundle:Eleve:alert.html.twig',array('message'=>$message));
 
-                $userManager = $this->get('fos_user.user_manager');
-                $user = $this->getUser();
                 $user->setLevel2(true);
                 $userManager->updateUser($user);
+
                 return new JsonResponse(array('alert'=>$alert));
             }
             else{
-                $message ="Veuillez vérifier vos réponses.";
-                $alert = $this->renderView('AppBundle:Eleve:error.html.twig',array('message'=>$message));
+
+                $alert = null;
+                $message = null;
+
+                $user->setErrors($user->getErrors()+1);
+                $userManager->updateUser($user);
+                $errors = $user->getErrors();
+
+                if($errors === 3)
+                {
+                    $message = "Voici les bonnes réponses";
+                    $alert = $this->renderView('@App/Eleve/error.html.twig',array('message'=>$message));
+                    $reponses = array(
+                        'rp1_c'=>'rp1_c_1',
+                        'rp1_s'=>'rp1_s_1',
+                        'rp1_t'=>'rp1_t_1',
+
+                        'rp2_c'=>'rp2_c_2',
+                        'rp2_s'=>'rp2_s_2',
+                        'rp2_s_2'=>'rp2_s_2_3',
+                        'rp2_t'=>'rp2_t_1',
+                        'rp2_t_2'=>'rp2_t_2_1',
+
+                        'rp3_c'=>'rp3_c_3',
+                        'rp3_s'=>'rp3_s_4',
+                        'rp3_s_2'=>'rp3_s_2_5',
+                        'rp3_s_3'=>'rp3_s_3_6',
+                        'rp3_t'=>'rp3_t_2',
+                        'rp3_t_2'=>'rp3_t_2_3',
+
+                        'rp4_c'=>'rp4_c_4',
+                        'rp4_s'=>'rp4_s_7',
+                        'rp4_s_2'=>'rp4_s_2_8',
+                        'rp4_t'=>'rp4_t_4',
+                        'rp4_t_2'=>'rp4_t_2_1'
+                    );
+
+                    return new JsonResponse(array('error_rep'=>$alert,'reponses'=>$reponses));
+                }
+                else{
+
+                    $message ="Veuillez vérifier vos réponses.".(3-$errors)." essais restants";
+                    $alert = $this->renderView('AppBundle:Eleve:error.html.twig',array('message'=>$message));
+
+                }
+
                 return new JsonResponse(array('error_rep'=>$alert));
             }
         }
+        else{
+            $userManager = $this->get('fos_user.user_manager');
+            $user = $this->getUser();
+            $user->setErrors(0);
+            $userManager->updateUser($user);
+        }
+
         return $this->render('@App/Eleve/mise_a_niveau.html.twig');
     }
 
@@ -290,9 +471,9 @@ class MainController extends Controller
      */
     public function eleveRemueMeningesQuelsPays(Request $request)
     {
-        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }*/
+        }
 
         if($request->isXmlHttpRequest())
         {
@@ -358,6 +539,8 @@ class MainController extends Controller
                 $rep = $rep."1";
             }
 
+            $userManager = $this->get('fos_user.user_manager');
+            $user = $this->getUser();
 
             if($rep=== "111111111")
             {
@@ -368,10 +551,48 @@ class MainController extends Controller
                 return new JsonResponse(array('alert'=>$alert,'button_next'=>$button_next));
             }
             else{
-                $message ="Veuillez vérifier vos réponses.";
-                $alert = $this->renderView('AppBundle:Eleve:error.html.twig',array('message'=>$message));
+
+                $alert = null;
+                $message = null;
+
+                $user->setErrors($user->getErrors()+1);
+                $userManager->updateUser($user);
+                $errors = $user->getErrors();
+
+                if($errors === 3)
+                {
+                    $message = "Voici les bonnes réponses";
+                    $alert = $this->renderView('@App/Eleve/error.html.twig',array('message'=>$message));
+
+                    $reponses = array(
+                        'rp1'=>'Islande',
+                        'rp2'=>"NZ",
+                        'rp3'=>'Philippines',
+                        'rp4'=>'EU',
+                        'rp5'=>'Antilles',
+                        'rp6'=>'Japon',
+                        'rp7'=>'Indonésie',
+                        'rp8'=>'Italie',
+                        'rp9'=>'Mexique'
+                    );
+
+                    return new JsonResponse(array('error_rep'=>$alert,'reponses'=>$reponses));
+                }
+                else{
+
+                    $message ="Veuillez vérifier vos réponses.".(3-$errors)." essais restants";
+                    $alert = $this->renderView('AppBundle:Eleve:error.html.twig',array('message'=>$message));
+
+                }
+
                 return new JsonResponse(array('error_rep'=>$alert));
             }
+        }
+        else{
+            $userManager = $this->get('fos_user.user_manager');
+            $user = $this->getUser();
+            $user->setErrors(0);
+            $userManager->updateUser($user);
         }
         return $this->render('@App/Eleve/quels_pays.html.twig');
     }
@@ -379,11 +600,11 @@ class MainController extends Controller
     /**
      * @Route("eleve/remue-meninges/quels-pays-2", name="eleve_remue_meninges_quels_pays_2")
      */
-    public function eleveRemueMeningesQuelsPays2(Request $request)
-    {
-        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+    public function eleveRemueMeningesQuelsPays2(Request $request) {
+
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }*/
+        }
 
         if($request->isXmlHttpRequest())
         {
@@ -391,7 +612,7 @@ class MainController extends Controller
             $rp2c1 = "Philippines";
             $rp3c1 = "Indonésie";
             $rp4c1 = "Nouvelle-Zélande";
-            $rp5c1 = "États-Unis";
+            $rp5c1 = "Etats-Unis";
             $rp6c1 = "Mexique";
             $rp7c1 = "Antilles Françaises";
             $rp8c1 = "Italie";
@@ -401,7 +622,7 @@ class MainController extends Controller
             $rp2c2 = "Islande";
             $rp3c2 = "Antilles Françaises";
             $rp4c2 = "Mexique";
-            $rp5c2 = "États-Unis";
+            $rp5c2 = "Etats-Unis";
             $rp6c2 = "Nouvelle-Zélande";
             $rp7c2 = "Indonésie";
             $rp8c2 = "Philippines";
@@ -447,16 +668,48 @@ class MainController extends Controller
             $rpc1_s = $rp1c1_s.$rp2c1_s.$rp3c1_s.$rp4c1_s.$rp5c1_s.$rp6c1_s.$rp7c1_s.$rp8c1_s.$rp9c1_s;
             $rpc2_s = $rp1c2_s.$rp2c2_s.$rp3c2_s.$rp4c2_s.$rp5c2_s.$rp6c2_s.$rp7c2_s.$rp8c2_s.$rp9c2_s;
 
+            $userManager = $this->get('fos_user.user_manager');
+            $user = $this->getUser();
+
             if($rpc1 === $rpc1_s && $rpc2 === $rpc2_s && $rp_text_s === $rp_text){
-                $message ="Félicitations vous avez terminé le remue-méninge : Quels pay(s) ?.";
+                $message ="Félicitations vous avez terminé le remue-méninge : Quels pay(s) ?";
                 $alert = $this->renderView('AppBundle:Eleve:alert.html.twig',array('message'=>$message));
                 return new JsonResponse(array('alert'=>$alert));
             }
             else{
-                $message ="Veuillez vérifier vos réponses.";
-                $alert = $this->renderView('AppBundle:Eleve:error.html.twig',array('message'=>$message));
+
+                $alert = null;
+                $message = null;
+
+                $user->setErrors($user->getErrors()+1);
+                $userManager->updateUser($user);
+                $errors = $user->getErrors();
+
+                if($errors === 3)
+                {
+                    $message = "Voici les bonnes réponses";
+                    $reponses="Carte 1 : 1. Japon , 2. Philippines , 3. Indonésie , 4. Nouvelle-Zélande , 5. Etats-Unis , 6. Mexique , 7. Antilles Françaises , 8. Italie , 9. Islande <br/><br/>  "
+                        ."Carte 2 : 1. Italie , 2. Islande , 3. Antilles Françaises , 4. Mexique , 5. Etats-Unis , 6. Nouvelle-Zélande , 7. Indonésie , 8. Philippines , 9. Japon";
+
+                    $alert = $this->renderView('@App/Eleve/error.html.twig',array('message'=>$message,'reponses'=>$reponses));
+
+                    $rp = array('rp1'=>'contextes géologiques','rp2'=>'fort','rp3'=>'subduction','rp4'=>'point chaud');
+                    return new JsonResponse(array('error_rep'=>$alert,'rp'=>$rp));
+                }
+                else{
+
+                    $message ="Veuillez vérifier vos réponses. ".(3-$errors)." essais restants";
+                    $alert = $this->renderView('AppBundle:Eleve:error.html.twig',array('message'=>$message));
+
+                }
                 return new JsonResponse(array('error_rep'=>$alert));
             }
+        }
+        else{
+            $userManager = $this->get('fos_user.user_manager');
+            $user = $this->getUser();
+            $user->setErrors(0);
+            $userManager->updateUser($user);
         }
         return $this->render('@App/Eleve/quels_pays_2.html.twig');
     }
@@ -466,9 +719,9 @@ class MainController extends Controller
      */
     public function eleveRemueMeningesQuizz(Request $request)
     {
-        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }*/
+        }
 
         if($request->isXmlHttpRequest()){
 
@@ -489,6 +742,9 @@ class MainController extends Controller
 
             $rep_quizz = $Q1.$Q2.$Q3.$Q4.$Q5.$Q6.$Q7.$Q8.$Q9.$Q10.$Q11.$Q12.$Q13;
 
+            $userManager = $this->get('fos_user.user_manager');
+            $user = $this->getUser();
+
             if($quizz === $rep_quizz)
             {
                 $message ="Félicitations vous avez terminé le remue-méninge : Quizz.";
@@ -508,10 +764,36 @@ class MainController extends Controller
                 return new JsonResponse(array('alert'=>$alert));
             }
             else{
-                $message ="Veuillez vérifier vos réponses.";
-                $alert = $this->renderView('AppBundle:Eleve:error.html.twig',array('message'=>$message));
+
+                $alert = null;
+                $message = null;
+
+                $user->setErrors($user->getErrors()+1);
+                $userManager->updateUser($user);
+                $errors = $user->getErrors();
+
+                if($errors === 3){
+
+                    $message = "Voici les bonnes réponses.";
+                    $reponses = "Q1 - b , Q2 - a , Q3 - c , Q4 - c , Q5 - b , Q6 - c , Q7 - a , Q8 - c , Q9 - a , Q10 - b , Q11 - c , Q12 - a , Q13 - b";
+                    $alert = $this->renderView('@App/Eleve/error.html.twig',array('message'=>$message,'reponses'=>$reponses));
+                    return new JsonResponse(array('error_rep'=>$alert,'reponses'=>$reponses));
+
+                }
+                else{
+
+                    $message ="Veuillez vérifier vos réponses. ".(3-$errors)." essais restants";
+                    $alert = $this->renderView('AppBundle:Eleve:error.html.twig',array('message'=>$message));
+
+                }
                 return new JsonResponse(array('error_rep'=>$alert));
             }
+        }
+        else{
+            $userManager = $this->get('fos_user.user_manager');
+            $user = $this->getUser();
+            $user->setErrors(0);
+            $userManager->updateUser($user);
         }
 
         return $this->render('@App/Eleve/quizz.html.twig');
@@ -522,9 +804,9 @@ class MainController extends Controller
      */
     public function eleveNotes(Request $request)
     {
-        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }*/
+        }
 
         $user = $this->getUser();
         $notes = $user->getNotes();
@@ -538,9 +820,9 @@ class MainController extends Controller
      */
     public function eleveNotesAjout(Request $request)
     {
-        /*if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
             return $this->redirectToRoute('home');
-        }*/
+        }
 
         $note = new Note();
         $form_create = $this->createForm(NoteType::class,$note);
@@ -564,6 +846,10 @@ class MainController extends Controller
      */
     public function eleveNotesModification(Note $note, Request $request)
     {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+            return $this->redirectToRoute('home');
+        }
+
         $form_update = $this->createForm(NoteType::class,$note);
         $form_update->handleRequest($request);
         if($form_update->isSubmitted() && $form_update->isValid())
@@ -583,6 +869,10 @@ class MainController extends Controller
      */
     public function eleveNotesSuppression(Note $note)
     {
+        if (false === $this->get('security.authorization_checker')->isGranted('ROLE_ELEVE')) {
+            return $this->redirectToRoute('home');
+        }
+
         $em = $this->getDoctrine()->getManager();
         $em->remove($note);
         $em->flush();

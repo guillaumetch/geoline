@@ -74,3 +74,25 @@ fos_user:
     registration:
         form:
             type: AppBundle\Form\UserType
+
+#Gaufrette
+knp_gaufrette:
+    stream_wrapper: ~
+
+    adapters:
+        document_adapter:
+            local:
+                directory: "%kernel.root_dir%/../web/documents"
+    filesystems:
+        document_fs:
+            adapter:    document_adapter
+#Vich
+vich_uploader:
+    db_driver: orm
+    storage:   gaufrette
+
+    mappings:
+        document:
+            uri_prefix:         /documents
+            upload_destination: document_fs
+

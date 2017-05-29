@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
@@ -17,6 +17,8 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new AppBundle\AppBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
+            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -1,6 +1,10 @@
 <div class="alert alert-danger" role="alert">
     {{ message }}
     <br>
+    {% if reponses is defined %}
+        {{ reponses | raw}}
+    {% endif %}
+    <br>
     <br>
     <a class="btn btn-warning" href="{{ path('eleve_remue_meninges') }}">Retour vers Remue - Méninges</a>
 </div>

@@ -9,13 +9,21 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-2" id="logo_geoline">
-                <a href="{{ path('home') }}"><img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px"></a>
+                <img src="{{ asset('bundles/app/img/Geoline.fr.jpg') }}" width="100px" height="100px">
+                <br>
+                <a class="btn btn-default margin_top_2" href="{{ path("enseignant") }}"><span class="glyphicon glyphicon-arrow-left"></span> Retour</a>
             </div>
             <div class="col-lg-offset-3 col-lg-2 padding2">
                 <a class="btn btn-default">Session Enseignant > Documents</a>
             </div>
         </div>
         <div class="row">
+            <div class="padding2 col-lg-offset-2 col-lg-8 transparent text-center">
+                <a class="btn btn-primary" href="{{ path('enseignant_documents_ajout') }}">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Ajouter un document
+                </a>
+            </div>
             <div class="col-lg-offset-2 col-lg-8" id="documents">
                 <ul>
                     <li><a href="{{ asset('bundles/app/documents/Mission - GEOTREF.pdf') }}" target="_blank"> Mission - GEOTREF</a></li>
@@ -23,8 +31,19 @@
                     <li><a href="{{ asset('bundles/app/documents/Le bateau ANTEA.pdf') }}" target="_blank"> Le bateau ANTEA</a></li>
                     <li><a href="{{ asset('bundles/app/documents/Exemples de drague.pdf') }}" target="_blank"> Exemples de drague</a></li>
                     <li><a href="{{ asset('bundles/app/documents/Combinaison de survie.pdf') }}" target="_blank"> Combinaison de survie</a></li>
-                    <li><a href="{{ asset('bundles/app/documents/Des instruments pour la géothermie sur les trottoirs de Valence.pdf') }}" target="_blank"> Des instruments pour la géothermie sur les trottoirs de Valence</a></li>
+                    <li>
+                        <a href="{{ asset('bundles/app/documents/Des instruments pour la géothermie sur les trottoirs de Valence.pdf') }}" target="_blank">
+                            Des instruments pour la géothermie sur les trottoirs de Valence
+                        </a>
+                    </li>
                     <li><a href="{{ asset('bundles/app/documents/Support - Présentation et objectifs de la mission sur ANTEA.pdf') }}" target="_blank">Support - Présentation et objectifs de la mission sur ANTEA</a> </li>
+                    {% for document in documents %}
+                        <li>
+                            <a href="{{ asset('documents/'~ document.documentName)}}">{{ document.documentName | replace({'.pdf':''}) }}</a>
+                            <a class="btn btn-warning" href="{{ path('enseignant_documents_modification',{'id':document.id}) }}"> Modifier</a>
+                            <a class="btn btn-danger" href="{{ path('enseignant_documents_suppression',{'id':document.id}) }}"> Supprimer</a>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
